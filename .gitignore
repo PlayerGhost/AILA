@@ -1,0 +1,4 @@
+back_end/.venv/
+back_end/servico_GCL/__pycache__/
+back_end/servico_GCL/dicionario_legislacao.dic
+back_end/servico_AILA/__pycache__/
