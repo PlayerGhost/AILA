@@ -59,6 +59,4 @@ Requisições
 
 As requisições POST para esse serviço devem seguir o padrão de consulta do SINAPES. A seguir, mostramos um exemplo de consulta em Python, onde o “texto de entrada” é o valor da chave "conteudo" e o “texto de saída” é o valor da chave “extensao”.
 
-![](images/trata-texto-lote/arquitetura10.png)#� �t�e�s�t�a�n�d�o�-�r�e�a�d�m�e�-�d�o�-�e�m�-�l�o�t�e�
-�
-�
+![](images/trata-texto-lote/arquitetura10.png)
