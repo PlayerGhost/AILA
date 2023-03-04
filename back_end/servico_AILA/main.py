@@ -3,6 +3,9 @@ import math
 import requests
 import datetime
 
+url = 'https://sinapses-backend.ia.pje.jus.br/rest/modelo/executarServico/-cnj-pnud-acad-unifor/GEN_GCL_UNIFOR/1'	
+header = {'Authorization': 'Basic NjQyNzY2NDMzNjg6Z3VnYUAxOTEyNzk='}
+
 ### ENCONTRA DISPOSITIVO ###
 def yyToyyyy(texto):
     if int(texto) <= 22:
@@ -441,18 +444,27 @@ def ConsultaDispositivo(legislacao):
     alinea = alinea if alinea else '0'
     item = item if item else '0'
     
-    url = 'http://localhost:5000/?'
-    url += 'tipo={}&'.format(idx_tipo)
-    url += 'lei={}&'.format(numero)
-    url += 'ano={}&'.format(data)
-    url += 'artigo={}&'.format(artigo)
-    url += 'complemento={}&'.format(argumento_artigo)
-    url += 'paragrafo={}&'.format(paragrafo)
-    url += 'inciso={}&'.format(inciso)
-    url += 'alinea={}&'.format(alinea)
-    url += 'item={}'.format(item)
+    # chamada no serviço flask
     
-    consulta = eval(requests.get(url).content.decode())
+    #url = 'http://localhost:5000/?'
+    #url += 'tipo={}&'.format(idx_tipo)
+    #url += 'lei={}&'.format(numero)
+    #url += 'ano={}&'.format(data)
+    #url += 'artigo={}&'.format(artigo)
+    #url += 'complemento={}&'.format(argumento_artigo)
+    #url += 'paragrafo={}&'.format(paragrafo)
+    #url += 'inciso={}&'.format(inciso)
+    #url += 'alinea={}&'.format(alinea)
+    #url += 'item={}'.format(item)
+    
+    #consulta = eval(requests.get(url).content.decode())
+    
+    mensagem = {'tipo': idx_tipo, 'lei': numero, 'ano': data, 'artigo': artigo, 'complemento': argumento_artigo, 
+                'paragrafo': paragrafo, 'inciso': inciso, 'alinea': alinea, 'item': item }
+    
+    resposta = requests.post(url, json=mensagem, headers=header)    
+    consulta = eval(resposta.text)['extensao']
+    
     dispositivos = []
     
     if consulta:
@@ -493,18 +505,25 @@ def ConsultaArtigo(legislacao):
     alinea = alinea if alinea else '0'
     item = item if item else '0'
     
-    url = 'http://localhost:5000/?'
-    url += 'tipo={}&'.format(tipo)
-    url += 'lei={}&'.format(numero)
-    url += 'data={}&'.format(data.strftime('%d/%m/%Y'))
-    url += 'artigo={}&'.format(artigo)
-    url += 'complemento={}&'.format(argumento_artigo)
-    url += 'paragrafo={}&'.format(paragrafo)
-    url += 'inciso={}&'.format(inciso)
-    url += 'alinea={}&'.format(alinea)
-    url += 'item={}'.format(item)
+    #url = 'http://localhost:5000/?'
+    #url += 'tipo={}&'.format(tipo)
+    #url += 'lei={}&'.format(numero)
+    #url += 'data={}&'.format(data.strftime('%d/%m/%Y'))
+    #url += 'artigo={}&'.format(artigo)
+    #url += 'complemento={}&'.format(argumento_artigo)
+    #url += 'paragrafo={}&'.format(paragrafo)
+    #url += 'inciso={}&'.format(inciso)
+    #url += 'alinea={}&'.format(alinea)
+    #url += 'item={}'.format(item)
     
-    consulta = eval(requests.get(url).content.decode())
+    #consulta = eval(requests.get(url).content.decode())
+    
+    mensagem = {'tipo': tipo, 'lei': numero, 'data': data.strftime('%d/%m/%Y'), 'artigo': artigo, 'complemento': argumento_artigo, 
+                'paragrafo': paragrafo, 'inciso': inciso, 'alinea': alinea, 'item': item }
+    
+    resposta = requests.post(url, json=mensagem, headers=header)
+    consulta = eval(resposta.text)['extensao']
+    
     artigos = []
     if list(consulta[0].values())[0] != 'None':
         if len(list(consulta[0].values())[0]) == 2:
@@ -759,6 +778,9 @@ def AILA(texto):
     
 #     print(dicionario_artigos_pareados)
 
-    return {'extensao':{'dadoSaidaJson': dado_saida_json}}
+    #isso deve estar dentro do serviço flask
+    #return {'extensao':{'dadoSaidaJson': dado_saida_json}}
+    
+    return dado_saida_json
 ### AILA ###
 
