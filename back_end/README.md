@@ -5,14 +5,13 @@ Serviço de consulta de legislações escrito em flask. Nesta versão o Serviço
 contendo objetos da classe "Legis" descritas no arquivo `Legis_Class.py`.
 
 Entrada: 
-	- Requisição - GET
+	Requisição - GET
 
-	- URL - http://localhost:5000/?tipo=<X>&lei=<X>&ano=<X>&artigo=<X>&complemento=<X>&paragrafo=<X>&inciso=<X>&alinea=<X>&item=<X>
+	URL - http://localhost:5000/?tipo=<X>&lei=<X>&ano=<X>&artigo=<X>&complemento=<X>&paragrafo=<X>&inciso=<X>&alinea=<X>&item=<X>
 		onde <X> são as variáveis da requisição.
 
 Saída:
-	- Lista de dicionários em que a chave é a referência da legislação no GCL e o valor pode ser a ementa de uma lei ou o texto da legislação e as jusriprudências que atuam sobre ele.
------------
+	Lista de dicionários em que a chave é a referência da legislação no GCL e o valor pode ser a ementa de uma lei ou o texto da legislação e as jusriprudências que atuam sobre ele.
 
 Serviço AILA
 -----------
@@ -21,10 +20,10 @@ Serviço de reconhecimento de citações legais em um texto, também escrito em 
 realiza a consulta no Serviço GCL.
 
 Entrada:
-	- Texto
+	Texto
 
 Saída:
-	- Dicionário contendo um lista de sub-dicionários. Os sub-dicionários possuem a seguinte estrutura:
+	Dicionário contendo um lista de sub-dicionários. Os sub-dicionários possuem a seguinte estrutura:
 		
 		|Chave          |Valor                                                 |
 		|---------------|------------------------------------------------------|
