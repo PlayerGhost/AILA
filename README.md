@@ -1,6 +1,8 @@
 # AILA
 `Artificial Intelligence Law Assistant`
 
+![AILA logo](images/livro-de-leis.png)
+
 **Descrição**
 ---
 
