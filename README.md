@@ -12,10 +12,10 @@ assim como permitir a consulta do texto da lei de uma legislação e as jurispru
 ---
 O repositório está dividido em 2 partes
 
-  Front-end:
+  `Front-end:`
     Contém os arquivos necessários para a configuração e instalação (ler o README do diretório em questão) do plugin.
    
-  Back-end:
+  `Back-end:`
     Contém a "inteligência" por trás da AILA. Este, por sua vez está dividido em 2 serviços, 
     sendo um de consulta à base de legislações (srevico_GCL) e o outro de interpretação do texto do usuário.
 
