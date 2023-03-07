@@ -7,6 +7,9 @@
 AILA é um plugin criado para Google Chrome e tem como objetivo auxiliar a padronização de citações legais em textos jurídicos, 
 assim como permitir a consulta do texto da lei de uma legislação e as jurisprudências que atuam sobre ela.
 
+
+**Estrutura**
+---
 O repositório está dividido em 2 partes
 
   Front-end:
