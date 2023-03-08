@@ -181,4 +181,53 @@ mark {
   let head = x.document.querySelector("head");
   head.appendChild(style);
 
+
+  // const script = document.createElement('script');
+  // script.src='/trataTexto2.js';
+  // script.setAttribute("type", "text/javascript");
+  // head.appendChild(script);
+  // document.querySelector("body").appendChild(script);
+  // document.body
+
+  // let iframe = document.querySelector("iframe").contentWindow
+  // let iframebody = iframe.document.querySelector("body").contentWindow
+
+  //document.getElementById('myIframe').src
+  //iframe.src='trata-texto.html'
+
+
+
+
+
+
+  //--------------------------------------------------------------------------------------------------------------
+
+
+  // //function replaceText(){//essa função vai ser inserida na pagina em execusão
+  //     const x = document.querySelector("iframe").contentWindow;
+  //     let teste = x.document.querySelector("body").textContent;
+  //     console.log(x);
+  //     console.log(teste);
+  //     //alert("oi2");
+  //     texto=('Nosso plug-in identificou que talvez voce esteja tentando dizer isso\n\n'+
+  //     teste+'\n'+'________________________________________\n\n'+"trata texto");
+
+  //     if (confirm(texto)) {
+
+  //         x.document.querySelector("body").textContent = "trata texto";
+  //       } else {
+  //         txt = "You pressed Cancel!";
+  //       }
+
+  //       //aadicionar elemento dentro de html via js
+  //       // x.document.querySelector("body").insertAdjacentHTML("afterend",
+  //       // "<h3>This is the text which has been inserted by JS</h3>");
+
+  //       x.document.querySelector("body").insertAdjacentHTML("afterend",
+  //       "<div class='fab'> + </div>");
+  //       x.document.querySelector("head").insertAdjacentHTML("afterend",
+  //       "<style>.fab {width: 70px;height: 70px;          background-color: red;       border-radius: 50%;       box-shadow: 0 6px 10px 0 #666;    font-size: 50px;    line-height: 70px;          color: white;        text-align: center;          position: fixed;          right: 50px;          bottom: 50px;                   transition: all 0.1s ease-in-out;       }       .fab:hover {        box-shadow: 0 6px 14px 0 #666;          transform: scale(1.05);       }      </style>");
+
+  // //}
+
 }
