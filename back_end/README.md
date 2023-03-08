@@ -33,3 +33,8 @@ Saída:
 		|posicao        |Posição da entidade no texto de entrada.              |
 		|sugestao       |Sugestões de padronização ou o texto da lei.          |
 		|jurisprudencias|Lista de jusriprudências que atuam sobre a legislacao.|
+		
+------------
+Sinapses
+------------
+Dentro de cada serviço a pasta sinapses contem os requerimentos do sistema e as instruções de carregamento do modelo no sistema do Sinapses.
