@@ -3,6 +3,7 @@ Serviço GCL
 
 Serviço de consulta de legislações escrito em flask. Nesta versão o Serviço GCL (Grafo de Conhecimento Legal) consulta um arquivo pickle (.dic)
 contendo objetos da classe "Legis" descritas no arquivo `Legis_Class.py`.
+Nota: o arquivo pickle não está hospedado no github devido ao seu tamanho.
 
 Entrada: 
 	Requisição - GET
