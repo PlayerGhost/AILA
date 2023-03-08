@@ -37,6 +37,14 @@ Saída:
 		|posicao        |Posição da entidade no texto de entrada.              |
 		|sugestao       |Sugestões de padronização ou o texto da lei.          |
 		|jurisprudencias|Lista de jusriprudências que atuam sobre a legislacao.|
+		
+
+------------
+Consulta do AILA pelo Sinapses
+------------
+É possível acessar o serviço do AILA através de uma request diretamente para o Sinapses. O exemplo a seguir demonstra a estrutura da requisição em um código python:
+![acesso_aila](https://user-images.githubusercontent.com/39318102/223851991-8f47acb9-9f99-4613-9ca2-75f8b9ae3965.jpg)
+
 
 ------------
 Sinapses
