@@ -56,9 +56,7 @@ function trataTexto() {
     sidebarCtn = document.querySelector(".sidebar-ctnt");
 
     bodyifr = ifr.document.querySelector("body");
-    let nErros = 0;
-    let nSugest = 0;
-    let nConsult = 0;
+
 
 
     body = bodyifr;
@@ -204,6 +202,7 @@ function enviaTrataTexto() {
     let dadoJson = JSON.stringify(dado);
 
     let xhr = new XMLHttpRequest();
+
     let url = "https://sinapses-backend.ia.pje.jus.br/rest/modelo/executarServico/-cnj-pnud-acad-unifor/GEN_AILA_UNIFOR/1";
     const method = "POST";
     xhr.open(method, url);
@@ -214,8 +213,10 @@ function enviaTrataTexto() {
 
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status == 200) {
+            //Comentato apenas para puxar os dados fake
             let dadoSaidaJson = JSON.parse(xhr.responseText);
             console.debug("Dados enviados pelo serviço:", dadoSaidaJson)
+
             recebeTrataTexto(dadoSaidaJson["extensao"]);
         }
     }
@@ -234,6 +235,7 @@ function copiarClipboard(element) {
     console.debug("elemento copiar" + element.innerText)
     navigator.clipboard.writeText(element.innerText);
 }
+
 
 
 //@cgustavoof - show popup sugestao
@@ -349,7 +351,6 @@ function criarMarcador(dado, id) {
 
         return marcador.outerHTML
     }
-  
 }
 
 //@cgustavoof - marcar as palavras
@@ -440,12 +441,12 @@ function chamarPopUp(dado) {
 
         if (dado['jurisprudencias'] != undefined) {
             if (dado['jurisprudencias'].length != 0) {
-                if (dado['jurisprudencias']['posicionamentos_agrupados_stj'].length != 0) {
-                    let aux_data = dado['jurisprudencias']['posicionamentos_agrupados_stj'];
+                if (dado['jurisprudencias']['posicionamentosAgrupadosStj'].length != 0) {
+                    let aux_data = dado['jurisprudencias']['posicionamentosAgrupadosStj'];
                     createPopUpSidebarElementJurisprud('posicionamentos agrupados stj', aux_data);
                 }
-                if (dado['jurisprudencias']['posicionamentos_isolados_stj'].length != 0) {
-                    let aux_data = dado['jurisprudencias']['posicionamentos_isolados_stj'];
+                if (dado['jurisprudencias']['posicionamentosIsoladosStj'].length != 0) {
+                    let aux_data = dado['jurisprudencias']['posicionamentosIsoladosStj'];
                     createPopUpSidebarElementJurisprud('posicionamentos isolados stj', aux_data);
                 }
             }
@@ -482,12 +483,14 @@ function createPopUpSidebarElement(txtElementSideBar, contentText4Main) {
 
 function createPopUpSidebarElementJurisprud(txtElementSideBar, dadosJuris) {
     let popSidebar = document.querySelector("#popup_sidebar");
+    //console.log(dadosJuris);
 
     popSideElement = document.createElement("div");
     popSideElement.setAttribute("id", "popup_sidebar_element");
     popSideElement_txt = document.createTextNode(txtElementSideBar);
     popSideElement.appendChild(popSideElement_txt);
-    popSideElement.addEventListener('click', function () {
+    popSideElement.addEventListener('click', function () { //colocar a função de sumir e voltar
+        //popMainTxt.innerText = contentText4Main;
         this.classList.toggle("active-colaps");
         var content = this.nextElementSibling;
         if (content.style.maxHeight) {
@@ -498,25 +501,33 @@ function createPopUpSidebarElementJurisprud(txtElementSideBar, dadosJuris) {
     });
     popSidebar.appendChild(popSideElement);
 
-    //---'posicionamentos_agrupados_stj'---
+    //---'posicionamentosAgrupadosStj'---
     let colapsedJurisprud = document.createElement("div");
     colapsedJurisprud.setAttribute("class", "content-colaps");
+    //colapsedJurisprud.setAttribute("id", "popup_sidebar_colapsed_element");
 
     for (let i = 0; i < dadosJuris.length; i++) {
+        //console.log(dadosJuris[i]['titulo']);
         let jurisElement = document.createElement("div");
         jurisElement.setAttribute("id", "popup_sidebar_juris_element");//
         let jurisElement_txt = document.createTextNode(dadosJuris[i]['titulo']);
         jurisElement.appendChild(jurisElement_txt);
-        jurisElement.addEventListener('click', function () { 
+        jurisElement.addEventListener('click', function () { //colocar a função de chamar cabeçalho jurisprud na main pop up
+            //popMainTxt.innerText = contentText4Main;
             createJurisprudMainTxt(dadosJuris[i]);
         });
         colapsedJurisprud.appendChild(jurisElement);
     }
     popSidebar.appendChild(colapsedJurisprud);
-    
+
+    // cria elementos escondidos das jurisprudencia
+
+
+
 }
 
 function createJurisprudMainTxt(dadosJuris) {
+
     let popMainTxt = document.querySelector("#popup_main_text")
 
     let jurisTxt = document.createElement("div");
@@ -536,6 +547,7 @@ function createJurisprudMainTxt(dadosJuris) {
     let jurisHR = document.createElement("hr");
 
     let jurisConteudo = document.createElement("div");
+    //let jurisConteudo_txt = document.createTextNode(dadosJuris['conteudo']);
     let jurisConteudo_txt = document.createRange().createContextualFragment(dadosJuris['conteudo']);//para aproveitar o html ja existente na jurisprudencia
     jurisConteudo.appendChild(jurisConteudo_txt);
 
