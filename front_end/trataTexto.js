@@ -1,4 +1,3 @@
-
 var bodyifr;
 var body;
 var sidebarCtn;
@@ -205,9 +204,9 @@ function enviaTrataTexto() {
     let dadoJson = JSON.stringify(dado);
 
     let xhr = new XMLHttpRequest();
-    let url = "http://18.214.121.114:5001/aila";
+    // let url = "http://18.214.121.114:5001/aila";
     // var url = "http://192.168.68.114:5001/tratatexto";
-    // let url = "https://sinapses-backend.ia.pje.jus.br/rest/modelo/executarServico/-cnj-pnud-acad-unifor/GEN_TRATA_TEXTO_UNIFOR/1";
+    let url = "https://sinapses-backend.ia.pje.jus.br/rest/modelo/executarServico/-cnj-pnud-acad-unifor/GEN_AILA_UNIFOR/1";
     const method = "POST";
     xhr.open(method, url);
 
@@ -223,7 +222,7 @@ function enviaTrataTexto() {
             console.debug("Dados enviados pelo serviço:", dadoSaidaJson)
 
             //recebeTrataTexto(dadoSaidaJson["dado_saida_json"]);
-            recebeTrataTexto(dadoSaidaJson["extensao"]["dadoSaidaJson"]);
+            recebeTrataTexto(dadoSaidaJson["extensao"]);
         }
     }
 
