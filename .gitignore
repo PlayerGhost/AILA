@@ -4,3 +4,5 @@ back_end/servico_GCL/nohup.out
 back_end/servico_GCL/dicionario_legislacao.dic
 back_end/servico_AILA/__pycache__/
 back_end/servico_AILA/nohup.out
+*.xml
+.idea/AILA.iml

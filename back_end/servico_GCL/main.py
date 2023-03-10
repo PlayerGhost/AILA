@@ -20,15 +20,6 @@ def artigo_tree(texto_legis, artigo, arg_artigo, paragrafo, inciso, alinea, item
             match_artigo[0])
         # artigo com tree - Art.1 ... :
         if len(match_artigo_tree) != 0:
-            # -------------------------------------------------------------------------------------
-            # TODO: Artigos que vigoram algo -> "" (Questionar)
-            # match_artigo_update = re.compile(fr"^“.*?(?=”)",
-            #                                  re.MULTILINE | re.DOTALL).findall(match_artigo[0])
-            # if len(match_artigo_update) != 0:
-            #     return "Artigo que Vigora Algo"
-
-            # -------------------------------------------------------------------------------------
-
             if arg_artigo != '0':
                 match_art_comp = re.compile(fr"^Art\.\s? ?{artigo}\-{arg_artigo}.*?(?=^Art\.\s? ?{artigo})",
                                             re.MULTILINE | re.DOTALL).findall(match_artigo[0])
@@ -345,7 +336,7 @@ def new_art_tree(artigo, arg_artigo, paragrafo, inciso, alinea, item, block, who
     elif item != '0':
         return item_tree(item, block)
     else:
-        match_artigo = re.compile(fr"^Art\.\s? ?{artigo}\ş?(?: º|º|\.|o|°)?.*?(?:\n|\:|(?=\.A)|(?=\.I)|(?=\.§)|\.$|(?=\.P))",
+        match_artigo = re.compile(fr"^Art\.\s? ?{artigo}\ş?(?: º|º|\.|o|°)?.*?(?:\n|\:|(?=\.A)|(?=\.C)|(?=\.I)|(?=\.§)|\.$|(?=\.P))",
                                   re.MULTILINE | re.DOTALL).findall(block[0])
         if len(match_artigo) != 0:
             return match_artigo[0]
@@ -388,14 +379,13 @@ def consulta_texto_lei(arquivo_dic, legislacao):
         paragrafo = legislacao[5]
         inciso = legislacao[6]
 
-        # TODO: Provavelmente necessário modificar esta lógica.
-        # append_lista_dict_results({f'{chave_legis}': 'None'})
-        # continue
         if inciso != '0':
             try:
                 inciso = fromRoman(inciso.upper())
-            except InvalidRomanNumeralError:
-                return None
+            except InvalidRomanNumeralError as e:
+                # append_lista_dict_results({f'{chave_legis}': 'None'})
+                # continue
+                raise e
 
         alinea = legislacao[7]
         item = legislacao[8]
