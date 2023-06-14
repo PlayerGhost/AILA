@@ -1,4 +1,3 @@
-from Legis_Class import Legis
 from flask import Flask, request
 from main import consulta_texto_lei, dic_leis
 
