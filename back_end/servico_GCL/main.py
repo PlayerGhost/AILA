@@ -5,7 +5,7 @@ from pickle import load
 from unicodedata import normalize
 
 # Necessário, se não bug. param: Legis_Class = Arquivo .py com a classe Legis. script.py não funciona.
-from Legis_Class import Legis
+from Entities.Legislacao import Legislacao
 
 ARQUIVO_DIC = 'dicionario_legislacao.dic'
 
