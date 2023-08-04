@@ -5,3 +5,6 @@ back_end/servico_GCL/dicionario_legislacao.dic
 back_end/servico_GCL/Entities/__pycache__/
 back_end/servico_AILA/__pycache__/
 back_end/servico_AILA/nohup.out
+experimento/.venv/
+experimento/__pycache__/
+experimento/nohup.out
