@@ -182,6 +182,10 @@ número 0000728-84.2022.5.12.0080, e que a audiência em questão ocorreu há um
         <h2 id="timerDisplay2">00:00:00</h2>
     </div>
 
+    <div id="fim-pesquisa" class="hidden">
+        <h1 id="msg-final">Pesquisa concluida, obrigado por participar da Pesquisa</h1>
+    </div>
+
     <script type="text/template" id="iframeContent">
 		<!DOCTYPE html>
 		<html lang="en">
@@ -199,13 +203,16 @@ número 0000728-84.2022.5.12.0080, e que a audiência em questão ocorreu há um
     <script>
         var startButton = document.getElementById("startButton");
         var inputContainer = document.getElementById("inputContainer");
+        
         var timerContainer = document.getElementById("timerContainer");
+
+        var fimPesquisa = document.getElementById("fim-pesquisa");
         var submitButton = document.getElementById("submitButton");
         var timerDisplay = document.getElementById("timerDisplay");
         var timerDisplay2 = document.getElementById("timerDisplay2");
         var textFrame = document.getElementById("textFrame");
         var nameUser = document.getElementById("nameUser");
-        var expUser = document.getElementById("expUser");
+        var expUser = document.getElementById("expUser");timerContainer
 
         var mainContent = document.getElementById("mainContent");
 
@@ -270,7 +277,8 @@ número 0000728-84.2022.5.12.0080, e que a audiência em questão ocorreu há um
             clearInterval(timerInterval);
             clearInterval(timerInterval2);
             inputContainer.style.display = "none";
-            timerContainer.style.display = "block";
+            fimPesquisa.style.display = "block"
+            // timerContainer.style.display = "block";
 
             var xhr = new XMLHttpRequest();
             var url = "http://{{local_ip}}:5002/convert";
