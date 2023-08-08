@@ -9,34 +9,11 @@ import socket
 app = Flask(__name__)
 CORS(app)
 
-def get_local_ip():
-    try:
-        # Criar um socket UDP para obter o endereço IP local
-        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        s.connect(("8.8.8.8", 80))
-        local_ip = s.getsockname()[0]
-        s.close()
-        return local_ip
-    except socket.error:
-        return '127.0.0.1'
-
 @app.route('/')
 def index():
-    local_ip = get_local_ip()
-    return render_template('index.html', local_ip=local_ip)
+    return render_template('index.html')
 
-    # return render_template('index.html')
-
-# @app.route('/html')
-# def return_html():
-#     return render_template('index.html')
-
-# @app.route('/',methods=['GET'])
-# def index():
-#     filenameHtml = 'index_v3.html'
-#     return send_file(filenameHtml)
-
-@app.route('/convert', methods=['POST'])
+@app.route('/experimento', methods = ['POST'])
 def convert_json_to_csv():
     # Define o nome do arquivo CSV
     fileName = 'pesquisas_data'
