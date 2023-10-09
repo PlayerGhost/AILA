@@ -146,31 +146,12 @@
 
         <!-- <iframe id="partPeticao" src ="https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709.htm"></iframe> -->
         <div id = "peticao-content">
+            <h3>ENUNCIADO DA PETIÇÃO</h3>
             <p>
-            Evelyn Calabresa ajuizou reclamação trabalhista contra a sociedade empresária Pizzaria Chapa Quente Ltda., em
-30 de janeiro de 2022, requerendo o pagamento do adicional de insalubridade em grau máximo.
-Evelyn explicou, na petição inicial, que trabalhou como cozinheira da pizzaria, de 12/07/2019 a 05/10/2021,
-sendo submetida a calor excessivo porque preparava as pizzas em fornos que alcançavam altas temperaturas, não
-recebendo qualquer equipamento de proteção individual do ex-empregador. Devidamente citada, a sociedade
-empresária apresentou contestação, afirmando que a temperatura alcançada na cozinha estava dentro do limite
-de tolerância e que, apesar de ser uma empresa pequena e familiar, fornecia todos os equipamentos de proteção
-à empregada, requerendo assim a improcedência do pedido.
-Em audiência não houve acordo e então o juiz, com base no Art. 195, § 2º, da CLT, determinou de ofício a
-realização de prova pericial, apresentando um único quesito do juízo, qual seja: “diga o perito se havia agente
-insalubre no local de trabalho de Evelyn e, em caso positivo, em que grau”. Além disso, o magistrado proibiu a
-apresentação de quesitos pelas partes, proibiu que os litigantes indicassem assistentes técnicos, nomeou um
-perito da sua confiança e fixou os honorários periciais dele em R$ 4.000,00, determinando que a empresa
-antecipasse a quantia em 10 dias, sob pena de execução forçada, e que a prova técnica somente tivesse início
-após o depósito.
-A sociedade empresária protestou contra a decisão, ponderando que ela violaria normas jurídicas, mas o juiz
-consignou o protesto na ata e manteve intacta a decisão. Ainda na audiência, o titular da sociedade empresária
-pediu a palavra e, aflito, explicou que o seu negócio ainda sofria o efeito da pandemia, e que se precisasse dispor
-dos R$ 4.000,00 determinados pelo juiz, não teria como fechar a folha de pagamento dos funcionários naquele
-mês.
-Sabe-se que a reclamação trabalhista em questão tramita perante a 80ª Vara do Trabalho de Criciúma/SC sob o
-número 0000728-84.2022.5.12.0080, e que a audiência em questão ocorreu há uma semana
-        </p>
-        
+            Ricardo e Roberto, no dia 10/08/2020, às 19 horas, foram flagrados pela Polícia Militar quando saíam da agência bancária do Banco Peixe, localizada no centro de Barnabeu, Estado de Campo Novo (CN), de posse de equipamentos tipo serrote, chave de fenda e alicate. A Polícia Militar fora acionada por vigilantes da agência que, remotamente, por meio de câmeras de segurança, acompanharam a ação de Ricardo e Roberto, que tentaram utilizar o serrote para romper a placa de aço e, assim, ter acesso ao conteúdo dos caixas eletrônicos da agência. Após 30 minutos de tentativas, Ricardo e Roberto deixaram a agência, momento em que, já ao lado de fora, foram abordados pelos policiais militares. Com base em tais fatos, e constando como elemento informativo produzido no inquérito apenas a oitiva dos acusados e dos policiais, Ricardo e Roberto foram denunciados como incursos nas penas do Art. 155, § 4º, incisos I e IV, e do Art. 14, inciso II, ambos do Código Penal. A denúncia foi distribuída ao Juízo competente da 5ª Vara Criminal da Comarca de Barnabeu-CN. A prisão em flagrante de Ricardo foi convertida em preventiva, para a garantia da ordem pública, salientando-se que Ricardo possuía condenação anterior pela prática de furto de caixa eletrônico, cuja pena foi cumprida e extinta em 10/04/2019. Já Roberto obteve liberdade provisória na audiência de custódia, realizada no dia seguinte à prisão em flagrante. Ricardo obteve ordem de habeas corpus, que o pôs em liberdade após 30 (trinta) dias preso, condicionada a cautelares diversas da prisão. A instrução processual repetiu as provas orais realizadas na fase inquisitiva, tendo sido ouvidos os Policiais Militares e, em seguida, realizado o interrogatório dos réus, que confessaram a tentativa de arrombamento do caixa eletrônico. Afirmaram que, com o serrote e a chave de fenda, tentaram romper a ferragem do caixa ou abrir os parafusos, mas, após cerca de 30 minutos dentro da agência, apenas conseguiram realizar arranhões na proteção de aço existente, razão pela qual paralisaram a ação e saíram da agência, quando então, do lado de fora, foram abordados por Policiais Militares. Finalizada a instrução, o Ministério Público não requereu a produção de outras provas. Em diligência requerida pela defesa, foi juntado aos autos um ofício do Banco Peixe, que informou ao Juízo que a estrutura do caixa eletrônico é de aço, imune à ação mecânica por força humana, e que os acusados não lograram danificar a estrutura do caixa eletrônico. Os autos foram enviados ao Ministério Público para manifestação, o qual postulou pela condenação dos acusados, nos termos da denúncia. O(A) advogado(a) constituído(a) foi intimado(a) no dia 11/04/2023 (terça-feira). 
+            </p>
+            
+            <h3>Referente aos fatos narrados na denúncia, indique o direito:</h3>
         
         <iframe id="textFrame" contenteditable="true" class="hidden"></iframe>
         <button id="submitButton">Enviar</button>
@@ -246,6 +227,21 @@ número 0000728-84.2022.5.12.0080, e que a audiência em questão ocorreu há um
       
         nameUser.addEventListener("input", checkInputs);
         expUser.addEventListener("input", checkInputs);
+
+        //apagar iframe quando clicado pela primeira vez
+
+        var iframeClicked = false; // Variável para controlar se o iframe foi clicado
+
+        // Adicione um evento de clique ao iframe
+        ifr.addEventListener("click", function() {
+            if (!iframeClicked) {
+                // Verifique se o iframe ainda não foi clicado
+                textFrame.contentDocument.body.innerText = ""; // Apague o conteúdo do iframe
+                iframeClicked = true; // Marque o iframe como clicado
+            }
+        });
+
+        //------------------------------------------------
 
         function checkInputs() {
             if (nameUser.value !== "" && expUser.value !== "") {
