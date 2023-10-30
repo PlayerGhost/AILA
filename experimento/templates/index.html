@@ -50,15 +50,20 @@
 
         }
         #nameUser{
-            width: 60vw;
+            width: 30vw;
             margin-right: 5vw;
             margin-bottom: 5vh;
             margin-top: 10vh;
         }
         #expUser{
-            width: 15vw;
+            width: 30vw;
             margin-bottom: 5vh;
         }
+        #codExp{
+            width: 30vw;
+            margin-bottom: 5vh;
+        }
+
         #textFrame{
         
             margin-bottom: 5vh;
@@ -142,7 +147,10 @@
 
     <div id="inputContainer" class="hidden">
         <input type="text" id="nameUser" placeholder="Digite seu id">
-        <input type="number" id="expUser" placeholder="Qtd anos de experiencia">
+        <input type="number" id="expUser" placeholder="Digite a quantidade anos de experiência">
+
+        <input type="number" id="codExp" placeholder="Digite o código do experimento">
+        
 
         <!-- <iframe id="partPeticao" src ="https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709.htm"></iframe> -->
         <div id = "peticao-content">
@@ -258,6 +266,7 @@
                 tempoDigitando: timerDisplay2.textContent,
                 user: nameUser.value.hashCode(),
                 anosExperiencia:expUser.value,
+                codExperimento:codExp.value,
                 peticao: textFrame.contentDocument.body.innerText
             };
 
