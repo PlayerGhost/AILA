@@ -85,7 +85,17 @@ function trataTexto() {
 
         if (e.target.tagName == 'MARK') {
             if (e.target.id.includes('mark_') == true)
-                popup_sugestao(document, e.target.id.replaceAll('mark_', 'popuptext_'), e.clientY + "px", e.clientX + "px")
+                // passar a posição aqui
+                //------novo-------- posição
+                var iframeLeft = document.querySelector("iframe").getBoundingClientRect().left;
+                var iframeTop = document.querySelector("iframe").getBoundingClientRect().top;
+                //--------------------------
+                // console.log("cord aondepop up sera gerado y:"+(iframeTop) + "px, x:"+ (iframeLeft)+ "px")
+                // console.log("cord aondepop up sera gerado do e y:"+(e.clientY) + "px, x:"+ (e.clientX)+ "px")
+                // console.log("scrool :"+ window.scrollY)
+
+                popup_sugestao(document, e.target.id.replaceAll('mark_', 'popuptext_'), (iframeTop+ e.clientY+window.scrollY ) + "px", (iframeLeft+ e.clientX)+ "px")
+                // popup_sugestao(document, e.target.id.replaceAll('mark_', 'popuptext_'), e.clientY + "px", e.clientX + "px")
         } else if (e.target.tagName == 'A') {
             substituir(e.target);
         } else if (e.target.tagName == 'IMG') {
@@ -180,55 +190,60 @@ function interceptOnClick() {
 
 function enviaTrataTexto() {
     //pega todas as sugestões ainda não marcadas e converte tra texto(como se ignorase todas)
-    console.log("Enviando o texto digitado...")
-    let elementsJaSubs = body.querySelectorAll(".j_su");
-    for (let i = 0; i < elementsJaSubs.length; i++) {
-        VetAuxSubs[i] = elementsJaSubs[i].innerText;
-        elementsJaSubs[i].innerText = '';
-        //console.log(elementsJaSubs[i]);
-    }
-
-    let texto = bodyifr.innerText;
-
-    elementsJaSubs = body.querySelectorAll(".j_su");
-    for (let i = 0; i < elementsJaSubs.length; i++) {
-        elementsJaSubs[i].innerText = VetAuxSubs[i]
-    }
-
-    console.debug("texto:" + texto)
-    //----para o sinapses-----------------------
-    let mensagemSinapse = { "mensagem": { "tipo": "TEXTO_PURO", "conteudo": texto } }
-    let dado = mensagemSinapse
-    //--------testando localmmente-----------------
-    //var dado = { "texto": texto };
-
-    let dadoJson = JSON.stringify(dado);
-
-    let xhr = new XMLHttpRequest();
-    let url = "http://52.200.199.130:5001/aila";
-    // var url = "http://192.168.68.114:5001/tratatexto";
-    // let url = "https://sinapses-backend.ia.pje.jus.br/rest/modelo/executarServico/-cnj-pnud-acad-unifor/GEN_TRATA_TEXTO_UNIFOR/1";
-    const method = "POST";
-    xhr.open(method, url);
-
-    xhr.setRequestHeader("Content-Type", "application/json");
-    xhr.setRequestHeader('Authorization', 'Basic NjQyNzY2NDMzNjg6Z3VnYUAxOTEyNzk=');
-
-
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4 && xhr.status == 200) {
-            //Comentato apenas para puxar os dados fake
-            let dadoSaidaJson = JSON.parse(xhr.responseText);
-            // dadoSaidaJson = getDadosFake();
-            console.debug("Dados enviados pelo serviço:", dadoSaidaJson)
-
-            //recebeTrataTexto(dadoSaidaJson["dado_saida_json"]);
-            recebeTrataTexto(dadoSaidaJson["extensao"]["dadoSaidaJson"]);
+    let lastCharacter = bodyifr.innerText.slice(-1);
+    // console.log("lastCharacter:"+lastCharacter)
+    // Verifica se o último caractere inserido é um espaço em branco
+    if (/\s/.test(lastCharacter)) {
+            
+        console.log("Enviando o texto digitado...")
+        let elementsJaSubs = body.querySelectorAll(".j_su");
+        for (let i = 0; i < elementsJaSubs.length; i++) {
+            VetAuxSubs[i] = elementsJaSubs[i].innerText;
+            elementsJaSubs[i].innerText = '';
+            //console.log(elementsJaSubs[i]);
         }
+
+        let texto = bodyifr.innerText;
+
+        elementsJaSubs = body.querySelectorAll(".j_su");
+        for (let i = 0; i < elementsJaSubs.length; i++) {
+            elementsJaSubs[i].innerText = VetAuxSubs[i]
+        }
+
+        console.debug("texto:" + texto)
+        //----para o sinapses-----------------------
+        let mensagemSinapse = { "mensagem": { "tipo": "TEXTO_PURO", "conteudo": texto } }
+        let dado = mensagemSinapse
+        //--------testando localmmente-----------------
+        //var dado = { "texto": texto };
+
+        let dadoJson = JSON.stringify(dado);
+
+        let xhr = new XMLHttpRequest();
+        let url = "http://52.200.199.130:5001/aila";
+        // var url = "http://192.168.68.114:5001/tratatexto";
+        // let url = "https://sinapses-backend.ia.pje.jus.br/rest/modelo/executarServico/-cnj-pnud-acad-unifor/GEN_TRATA_TEXTO_UNIFOR/1";
+        const method = "POST";
+        xhr.open(method, url);
+
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.setRequestHeader('Authorization', 'Basic NjQyNzY2NDMzNjg6Z3VnYUAxOTEyNzk=');
+
+
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status == 200) {
+                //Comentato apenas para puxar os dados fake
+                let dadoSaidaJson = JSON.parse(xhr.responseText);
+                // dadoSaidaJson = getDadosFake();
+                console.debug("Dados enviados pelo serviço:", dadoSaidaJson)
+
+                //recebeTrataTexto(dadoSaidaJson["dado_saida_json"]);
+                recebeTrataTexto(dadoSaidaJson["extensao"]["dadoSaidaJson"]);
+            }
+        }
+
+        xhr.send(dadoJson);
     }
-
-    xhr.send(dadoJson);
-
 }
 
 function removeAllChildNodes(parent) {
@@ -296,6 +311,16 @@ function criarMarcador(dado, id) {
         span = document.createElement("span");
         span.setAttribute('class', 'popuptext');
         span.setAttribute('id', 'popuptext_' + id);
+
+        // //------novo-------- posição
+        // var iframeLeft = document.querySelector("iframe").getBoundingClientRect().left;
+        // var iframeTop = document.querySelector("iframe").getBoundingClientRect().top;
+
+        // span.style.left = iframeLeft + 'px';
+        // span.style.top = iframeTop + 'px';
+
+
+        // //-----------------------novo
 
         conteudoSug = document.createElement("div");
         conteudoSug.setAttribute('class', 'detailpopup');

@@ -153,6 +153,7 @@
             
             <h3>Na condição de advogado(a) dos réus, tendo como referência o que foi exposto no enunciado, redija o tópico "Do Direito" ("Dos Fundamentos Jurídicos", "Do Mérito") da peça processual adequada, diferente do habeas corpus e embargos de declaração:</h3>
         
+            <div style="display:flex;"><p>quantidade de palavras : </p><p id="qtdPalavras"></p></div>
             <iframe id="textFrame" contenteditable="true" class="hidden" scrolling="yes"></iframe>
             <button id="submitButton">Enviar</button>
         </div>
@@ -225,6 +226,35 @@
         submitButton.disabled = true;//desabilitao botao para so poder enviar quando os campos estiverem preenchidos
       
         nameUser.addEventListener("input", checkInputs);
+
+        bodyifr.addEventListener('input', contaPalavras);
+
+        let qtdPalavras =0;
+        let textHTMLIframe ='';
+        let textHTMLIframeOK ='';
+
+        qtdPalavraElement = document.getElementById('qtdPalavras');
+
+        function contaPalavras(){
+            let lastCharacter = bodyifr.innerText.slice(-1);
+            textHTMLIframe = bodyifr.innerHTML;
+
+            // Verifica se o último caractere inserido é um espaço em branco
+            if (/\s+/.test(lastCharacter)) {
+
+                // Dividir o texto por espaços em branco e quebras de linha
+                qtdPalavras = parseInt(bodyifr.innerText.split(/\s+/).length);
+                console.log(bodyifr.innerText.split(' '))
+                console.log(qtdPalavras)
+                qtdPalavraElement.innerText = qtdPalavras;
+                if(qtdPalavras >= 2000){
+                    bodyifr.innerHTML = textHTMLIframeOK;
+                }else{
+                    textHTMLIframeOK = textHTMLIframe;
+                }
+            }
+        }
+
 
         //apagar iframe quando clicado pela primeira vez
 
