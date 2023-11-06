@@ -426,7 +426,8 @@ function recebeTrataTexto(dados) {
 
     texto = bodyifr.innerText
     for (let i = 0; i < dados.length; i++) {
-        if (dados[i]['tipo'] == 'sugestao_dispositivo' || dados[i]['tipo'] == 'sugestao_artigo' || dados[i]['tipo'] == 'consulta_legislacao') {
+        if (dados[i]['tipo'] == 'sugestao_dispositivo' || dados[i]['tipo'] == 'sugestao_artigo' ) {
+            // if (dados[i]['tipo'] == 'sugestao_dispositivo' || dados[i]['tipo'] == 'sugestao_artigo' || dados[i]['tipo'] == 'consulta_legislacao') {
             console.debug("Consulta elegível para marcação");
             const pos = caret();
             texto = marcarPalavras(dados[i], texto);
