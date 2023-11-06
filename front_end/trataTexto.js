@@ -524,7 +524,7 @@ function chamarPopUp(dado) {
     //       </div>
     //     </div>
 
-    popup.style.top = (window.innerHeight / 2 - SCROLL_WIDTH) / 2 + "px";
+    popup.style.top = ((window.innerHeight / 2 - SCROLL_WIDTH) / 2)+ window.scrollY + "px";
     popup.style.left = (window.innerWidth / 2 - SCROLL_WIDTH) / 2 + "px";
     popup.style.width = window.innerWidth / 2 - SCROLL_WIDTH + "px";
     popup.style.height = window.innerHeight / 2 - SCROLL_WIDTH + "px";

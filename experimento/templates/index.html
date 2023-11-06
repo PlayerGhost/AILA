@@ -62,6 +62,10 @@
             margin-bottom: 5vh;
         }
 
+        #link-form-sec{
+            visibility: hidden;
+        }
+
         #textFrame{
             height: 50vh;
             margin-bottom: 5vh;
@@ -165,6 +169,7 @@
 
     <div id="fim-pesquisa" class="hidden">
         <h1 id="msg-final">Pesquisa concluida, obrigado por participar da Pesquisa</h1>
+        <a id="link-form-sec" href="https://docs.google.com/forms/d/e/1FAIpQLSfsKJzO4vi3XmSjDWCmyZ0kCtCZ_HQKNkvlJFtlGYQDz7wnqQ/viewform">Clique aqui para preencher o formulario de avaliação do software</a>
     </div>
 
     <script type="text/template" id="iframeContent">
@@ -293,6 +298,12 @@
             // for (var i = 0; i < inputElements.length; i++) {
             //     data.inputs.push(inputElements[i].value);
             // }
+            console.log(codExp.value)
+            let formSecretoLink = document.getElementById("link-form-sec")
+            if(codExp.value == "1"){
+                console.log("identificou codigo 1")
+                formSecretoLink.style.visibility = "visible";
+            }
 
             data = [data];
             var jsonData = JSON.stringify(data);
