@@ -175,7 +175,7 @@
 			<meta charset="UTF-8">
 			<title>Inner</title>
 		</head>
-		<body contenteditable="true">
+		<body contenteditable="true" spellcheck="false">
 		<p>Digite sua petição aqui.</p>
 		</body>
 		</html>
@@ -199,12 +199,15 @@
 
         var iframe = textFrame
 		var content = document.getElementById("iframeContent").innerHTML;
+
 		var frameDoc = iframe.document;
+
 		if (iframe.contentWindow)
 			frameDoc = iframe.contentWindow.document;
 
 		frameDoc.open();
 		frameDoc.writeln(content);
+        
 		frameDoc.close();
 
 		const ifr = document.querySelector("#textFrame").contentWindow;

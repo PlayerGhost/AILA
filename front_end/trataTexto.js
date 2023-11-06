@@ -189,11 +189,11 @@ function interceptOnClick() {
 }
 
 function enviaTrataTexto() {
-    //pega todas as sugestões ainda não marcadas e converte tra texto(como se ignorase todas)
-    let lastCharacter = bodyifr.innerText.slice(-1);
-    // console.log("lastCharacter:"+lastCharacter)
-    // Verifica se o último caractere inserido é um espaço em branco
-    if (/\s/.test(lastCharacter)) {
+    // //pega todas as sugestões ainda não marcadas e converte tra texto(como se ignorase todas)
+    // let lastCharacter = bodyifr.innerText.slice(-1);
+    // // console.log("lastCharacter:"+lastCharacter)
+    // // Verifica se o último caractere inserido é um espaço em branco
+    // if (/\s/.test(lastCharacter)) {
             
         console.log("Enviando o texto digitado...")
         let elementsJaSubs = body.querySelectorAll(".j_su");
@@ -243,7 +243,7 @@ function enviaTrataTexto() {
         }
 
         xhr.send(dadoJson);
-    }
+    // }
 }
 
 function removeAllChildNodes(parent) {
