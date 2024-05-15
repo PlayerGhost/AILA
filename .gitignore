@@ -14,4 +14,4 @@ experimento_teste/.venv/
 experimento_teste/__pycache__/
 experimento_teste/nohup.out
 experimento_teste/pesquisas_data.csv
-.idea/
+.idea
