@@ -28,5 +28,6 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
             cd ~/AILA/back_end
+            ls
             chmod +x startup.sh
             ./startup.sh
