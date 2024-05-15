@@ -17,7 +17,7 @@ jobs:
         run: |
           echo "${{ secrets.EC2_SSH_KEY }}" > /tmp/deploy_key
           chmod 600 /tmp/deploy_key
-          rsync -avz -e "ssh -i /tmp/deploy_key -o StrictHostKeyChecking=no" --delete --exclude '.git' ./ ${{ secrets.EC2_USERNAME }}@${{ secrets.EC2_HOST }}:~/AILA
+          rsync -avz -e "ssh -i /tmp/deploy_key -o StrictHostKeyChecking=no" --delete --exclude '.git' --exclude 'Logs' ./ ${{ secrets.EC2_USERNAME }}@${{ secrets.EC2_HOST }}:~/AILA
           rm /tmp/deploy_key
 
       - name: Run startup.sh on EC2
