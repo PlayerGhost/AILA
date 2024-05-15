@@ -7,7 +7,7 @@ services:
       args:
         - NO_CACHE=1
     volumes:
-      - F:/DevPack/JetBrains/PycharmProjects/AILA/back_end/servico_GCL/dicionario_legislacao.dic:/app/dicionario_legislacao.dic
+      - ./servico_GCL/dicionario_legislacao.dic:/app/dicionario_legislacao.dic
     ports:
       - "5000:5000"
 
