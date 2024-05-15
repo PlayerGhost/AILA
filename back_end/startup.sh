@@ -10,8 +10,6 @@ sudo chown -R ubuntu:docker /home/ubuntu/AILA/
 sudo find /home/ubuntu/AILA/ -type d -exec chmod 775 {} \;
 sudo find /home/ubuntu/AILA/ -type f -exec chmod 664 {} \;
 
-cd back_end
-
 sudo docker compose down
 
 sudo docker system prune -f
