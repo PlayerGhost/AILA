@@ -220,7 +220,7 @@ function enviaTrataTexto() {
         let dadoJson = JSON.stringify(dado);
 
         let xhr = new XMLHttpRequest();
-        let url = "http://52.200.199.130:5001/aila";
+        let url = "http://54.86.19.201:5001/aila";
         // var url = "http://192.168.68.114:5001/tratatexto";
         // let url = "https://sinapses-backend.ia.pje.jus.br/rest/modelo/executarServico/-cnj-pnud-acad-unifor/GEN_TRATA_TEXTO_UNIFOR/1";
         const method = "POST";

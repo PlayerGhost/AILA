@@ -440,7 +440,7 @@ def ConsultaDispositivo(legislacao):
     alinea = alinea if alinea else '0'
     item = item if item else '0'
     
-    url = 'http://localhost:5000/?'
+    url = 'http://gcl:5000/?'
     url += 'tipo={}&'.format(idx_tipo)
     url += 'lei={}&'.format(numero)
     url += 'ano={}&'.format(data)
@@ -500,7 +500,7 @@ def ConsultaArtigo(legislacao, d):
         alinea = alinea if alinea else '0'
         item = item if item else '0'
         
-        url = 'http://localhost:5000/?'
+        url = 'http://gcl:5000/?'
         url += 'tipo={}&'.format(tipo)
         url += 'lei={}&'.format(numero)
         url += 'data={}&'.format(data.strftime('%d/%m/%Y'))
@@ -783,7 +783,7 @@ lista_artigos_jurisprudencias = [(3, '3.689', datetime.date(1941, 10, 3), '158')
 
 jurisprudencias = {}
 for artigo in lista_artigos_jurisprudencias:
-    url = 'http://localhost:5000/?'
+    url = 'http://gcl:5000/?'
     url += 'tipo={}&'.format(artigo[0])
     url += 'lei={}&'.format(artigo[1])
     url += 'data={}&'.format(artigo[2].strftime('%d/%m/%Y'))
