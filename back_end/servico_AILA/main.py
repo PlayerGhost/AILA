@@ -1,5 +1,4 @@
 import re
-<<<<<<< HEAD
 import json
 import math
 import requests
@@ -595,11 +594,6 @@ def busca_juri(texto):
 
 ### BUSCA JURI ###
 
-=======
-import math
-import requests
-import datetime
->>>>>>> a73e04b86103b8f9fd7053e6110a7e308826d6b2
 
 ### ENCONTRA DISPOSITIVO ###
 def yyToyyyy(texto):
@@ -969,15 +963,9 @@ def ModeloDistancia(artigos, dispositivo, dispositivo_GCL, dicionario_artigos_pa
             len_artigo = len(chave_artigo)
             
             for posicao_artigo in valor_artigo['posicao']:
-<<<<<<< HEAD
                 distancia = abs(posicao_artigo[0] - posicao_dispositivo[0])
                 
                 
-=======
-#                 distancia = abs(posicao_artigo[0] - posicao_dispositivo[0])
-                
-                # checando quem está na frente
->>>>>>> a73e04b86103b8f9fd7053e6110a7e308826d6b2
                 if posicao_artigo[0] < posicao_dispositivo[0]:
                     distancia = posicao_dispositivo[0] - posicao_artigo[1]
                     if distancia <= delta and distancia < distancia_minima:
@@ -1044,11 +1032,7 @@ def ConsultaDispositivo(legislacao):
     alinea = alinea if alinea else '0'
     item = item if item else '0'
     
-<<<<<<< HEAD
     url = 'http://localhost:5000/?'
-=======
-    url = 'http://gcl:5000/?'
->>>>>>> a73e04b86103b8f9fd7053e6110a7e308826d6b2
     url += 'tipo={}&'.format(idx_tipo)
     url += 'lei={}&'.format(numero)
     url += 'ano={}&'.format(data)
@@ -1064,7 +1048,6 @@ def ConsultaDispositivo(legislacao):
     
     if consulta:
         for dispositivo in consulta:   
-<<<<<<< HEAD
             lei = list(dispositivo.keys())[0]
             dispositivos.append({'dispositivo': (flag, tipo, lei),
                                  'ementa': list(dispositivo.values())[0]})
@@ -1073,16 +1056,6 @@ def ConsultaDispositivo(legislacao):
 
 def ConsultaArtigo(legislacao, d):
     #texto_bruto = legislacao[0][0]
-=======
-            lei = eval(list(dispositivo.keys())[0])
-            dispositivos.append({'dispositivo': (flag, tipo, lei[0], lei[1], lei[2]),
-                                 'ementa': list(dispositivo.values())[0]})
-
-    return dispositivos
-
-def ConsultaArtigo(legislacao, d):
-    texto_bruto = legislacao[0][0]
->>>>>>> a73e04b86103b8f9fd7053e6110a7e308826d6b2
     artigo = legislacao[0][1][0]
     argumento_artigo = legislacao[0][1][1]
     paragrafo = legislacao[0][1][2]
@@ -1090,16 +1063,10 @@ def ConsultaArtigo(legislacao, d):
     alinea = legislacao[0][1][4]
     item = legislacao[0][1][5]
     
-<<<<<<< HEAD
     split = str(legislacao[1][1][0]).split('_')
     tipo = int(split[0])
     numero = split[1]
     data = split[2]
-=======
-    tipo = legislacao[1][1][0]
-    numero = legislacao[1][1][1]
-    data = legislacao[1][1][2]
->>>>>>> a73e04b86103b8f9fd7053e6110a7e308826d6b2
     
     flag_indireta = legislacao[0][3]
     
@@ -1109,10 +1076,6 @@ def ConsultaArtigo(legislacao, d):
                         artigo)
     
     tupla = (tipo, numero, data, artigo, argumento_artigo, paragrafo, inciso, alinea, item)
-<<<<<<< HEAD
-=======
-    print(tupla)
->>>>>>> a73e04b86103b8f9fd7053e6110a7e308826d6b2
 
     if tupla in d:
         artigos = []
@@ -1129,24 +1092,16 @@ def ConsultaArtigo(legislacao, d):
         alinea = alinea if alinea else '0'
         item = item if item else '0'
         
-<<<<<<< HEAD
         url = 'http://localhost:5000/?'
         url += 'tipo={}&'.format(tipo)
         url += 'lei={}&'.format(numero)
         url += 'ano={}&'.format(int(data.split('-')[0]))
-=======
-        url = 'http://gcl:5000/?'
-        url += 'tipo={}&'.format(tipo)
-        url += 'lei={}&'.format(numero)
-        url += 'data={}&'.format(data.strftime('%d/%m/%Y'))
->>>>>>> a73e04b86103b8f9fd7053e6110a7e308826d6b2
         url += 'artigo={}&'.format(artigo)
         url += 'complemento={}&'.format(argumento_artigo)
         url += 'paragrafo={}&'.format(paragrafo)
         url += 'inciso={}&'.format(inciso)
         url += 'alinea={}&'.format(alinea)
         url += 'item={}'.format(item)
-<<<<<<< HEAD
 
         consulta = eval(requests.get(url).content.decode())
 
@@ -1168,26 +1123,6 @@ def ConsultaArtigo(legislacao, d):
     return artigos
 
 def ConsultaGCL(legislacao, d=[]):  
-=======
-        
-        consulta = eval(requests.get(url).content.decode())
-        artigos = []
-        if list(consulta[0].values())[0] != 'None':
-            if len(list(consulta[0].values())[0]) == 2:
-                artigos.append({'artigo': tupla[3:],
-                                'texto_artigo': list(consulta[0].values())[0][0],
-                                'jurisprudencias': list(consulta[0].values())[0][1],
-                                'flag_indireta': flag_indireta})
-            else:
-                artigos.append({'artigo': tupla[3:],
-                                'texto_artigo': list(consulta[0].values())[0],
-                                'jurisprudencias': [],
-                                'flag_indireta': flag_indireta})
-            
-    return artigos
-
-def ConsultaGCL(legislacao, d = None):  
->>>>>>> a73e04b86103b8f9fd7053e6110a7e308826d6b2
     if len(legislacao) >= 3:
         sugestoes = ConsultaDispositivo(legislacao)           
     else:
@@ -1217,7 +1152,6 @@ def AILA(texto):
             sugestoes_padronizadas_dispositivos = []
             for sugestao_dispositivo in sugestoes_dispositivos:
                 s = sugestao_dispositivo['dispositivo']
-<<<<<<< HEAD
 
                 if s[0] == 0:
                     sugestoes_padronizadas_dispositivos.append('{}'.format(texto_bruto_dispositivo.upper()))
@@ -1227,16 +1161,6 @@ def AILA(texto):
                     sugestoes_padronizadas_dispositivos.append('{} n° {}/{}'.format(s[1],
                                                                                     s[2].split('_')[1],
                                                                                     s[2].split('_')[2].split('-')[0]))
-=======
-                if s[0] == 0:
-                    sugestoes_padronizadas_dispositivos.append('{}'.format(texto_bruto_dispositivo.upper()))
-                elif s[0] ==1:
-                    sugestoes_padronizadas_dispositivos.append('{}'.format(PadronizaNomeLei(texto_bruto_dispositivo)))
-                else:
-                    sugestoes_padronizadas_dispositivos.append('{} n° {}/{}'.format(s[1].title(),
-                                                                                    s[3],
-                                                                                    s[4].year))
->>>>>>> a73e04b86103b8f9fd7053e6110a7e308826d6b2
             
             if len(sugestoes_dispositivos) == 1:
                 sugestao_dispositivo = sugestoes_dispositivos[0]
@@ -1256,23 +1180,13 @@ def AILA(texto):
                                             'marcador': texto_bruto_dispositivo,
                                             'posicao': dispositivo['posicao'],
                                             'sugestoes': [sugestao_padronizada_dispositivo]})
-<<<<<<< HEAD
-
-=======
-         
->>>>>>> a73e04b86103b8f9fd7053e6110a7e308826d6b2
                 legislacoes = ModeloDistancia(dicionario_artigos,
                                               {texto_bruto_dispositivo: dispositivo},
                                               sugestao_dispositivo['dispositivo'][2:],
                                               dicionario_artigos_pareados)
 
                 for legislacao in legislacoes:
-<<<<<<< HEAD
                     sugestoes_artigos = ConsultaGCL(legislacao)
-=======
-                    sugestoes_artigos = ConsultaGCL(legislacao, d)
-                    
->>>>>>> a73e04b86103b8f9fd7053e6110a7e308826d6b2
                     
                     texto_bruto_artigo = legislacao[0][0]
                     
@@ -1444,7 +1358,6 @@ def AILA(texto):
                                         'posicao': posicao,
                                         'sugestoes': []})
     
-<<<<<<< HEAD
     jurisprudencias_texto = busca_juri(texto)
 
     return {'extensao':{'artigos_e_dispositivos': dado_saida_json,
@@ -1463,24 +1376,6 @@ lista_artigos_jurisprudencias = [(3, '3.689', date(1941, 10, 3), '158'),
                                  (3, '2.848', date(1940, 12, 7), '32'),
                                  (3, '2.848', date(1940, 12, 7), '42'),
                                  (3, '2.848', date(1940, 12, 7), '63')]
-=======
-    # print(dado_saida_json)
-
-    return {'extensao':{'dadoSaidaJson': dado_saida_json}}
-### AILA ###
-
-### MOCK DATA ###
-lista_artigos_jurisprudencias = [(3, '3.689', datetime.date(1941, 10, 3), '158'),
-                                 (3, '3.689', datetime.date(1941, 10, 3), '386'),
-                                 (3, '3.689', datetime.date(1941, 10, 3), '387'),
-                                 (3, '3.689', datetime.date(1941, 10, 3), '403'),
-                                 (3, '3.689', datetime.date(1941, 10, 3), '404'),
-                                 (3, '2.848', datetime.date(1940, 12, 7), '13'),
-                                 (3, '2.848', datetime.date(1940, 12, 7), '16'),
-                                 (3, '2.848', datetime.date(1940, 12, 7), '32'),
-                                 (3, '2.848', datetime.date(1940, 12, 7), '42'),
-                                 (3, '2.848', datetime.date(1940, 12, 7), '63')]
->>>>>>> a73e04b86103b8f9fd7053e6110a7e308826d6b2
 
 jurisprudencias = {}
 for artigo in lista_artigos_jurisprudencias:
@@ -1500,7 +1395,6 @@ for artigo in lista_artigos_jurisprudencias:
 
 d = {}
 
-<<<<<<< HEAD
 d_00 = {(3, '3.689', date(1941, 10, 3), '158', None, None, None, None, None): {'artigo': ('158', None, None, None, None, None),
                                                              'texto_artigo': 'Art. 158. Quando a infração deixar vestígios, será indispensável o exame de corpo de delito, direto ou indireto, não podendo supri-lo a confissão do acusado.',
                                                              'jurisprudencias': jurisprudencias[(3, '3.689', date(1941, 10, 3), '158')]},
@@ -1713,218 +1607,4 @@ d_09 = {(3, '2.848', date(1940, 12, 7), '65', None, None, None, None, None): {'a
                                                         'texto_artigo': 'e) cometido o crime sob a influência de multidão em tumulto, se não o provocou.',
                                                         'jurisprudencias': jurisprudencias[(3, '2.848', date(1940, 12, 7), '63')]}} # Erro no GCL, jurisprudencia trocada nos artigos daquele codigo
 d.update(d_09)'''
-=======
-d_00 = {(3, '3.689', datetime.date(1941, 10, 3), '158', None, None, None, None, None): {'artigo': ('158', None, None, None, None, None),
-                                                             'texto_artigo': 'Art. 158. Quando a infração deixar vestígios, será indispensável o exame de corpo de delito, direto ou indireto, não podendo supri-lo a confissão do acusado.',
-                                                             'jurisprudencias': jurisprudencias[(3, '3.689', datetime.date(1941, 10, 3), '158')]},
-        (3, '3.689', datetime.date(1941, 10, 3), '158', None, None, 'I', None, None): {'artigo': ('158', None, None, 'I', None, None),
-                                                          'texto_artigo': 'I - violência doméstica e familiar contra mulher;   (Incluído dada pela Lei nº 13.721, de 2018)',
-                                                          'jurisprudencias': jurisprudencias[(3, '3.689', datetime.date(1941, 10, 3), '158')]},
-        (3, '3.689', datetime.date(1941, 10, 3), '158', None, None, 'II', None, None): {'artigo': ('158', None, None, 'II', None, None),
-                                                          'texto_artigo': 'II - violência contra criança, adolescente, idoso ou pessoa com deficiência.   (Incluído dada pela Lei nº 13.721, de 2018)',
-                                                          'jurisprudencias': jurisprudencias[(3, '3.689', datetime.date(1941, 10, 3), '158')]}}
-d.update(d_00)
-
-d_01 = {(3, '3.689', datetime.date(1941, 10, 3), '386', None, None, None, None, None): {'artigo': ('386', None, None, None, None, None),
-                                                             'texto_artigo': 'Art. 386.  O juiz absolverá o réu, mencionando a causa na parte dispositiva, desde que reconheça:',
-                                                             'jurisprudencias': jurisprudencias[(3, '3.689', datetime.date(1941, 10, 3), '386')]},
-        (3, '3.689', datetime.date(1941, 10, 3), '386', None, None, 'I', None, None): {'artigo': ('386', None, None, 'I', None, None),
-                                                          'texto_artigo': 'I - estar provada a inexistência do fato;',
-                                                          'jurisprudencias': jurisprudencias[(3, '3.689', datetime.date(1941, 10, 3), '386')]},
-        (3, '3.689', datetime.date(1941, 10, 3), '386', None, None, 'II', None, None): {'artigo': ('386', None, None, 'II', None, None),
-                                                          'texto_artigo': 'II - não haver prova da existência do fato;',
-                                                          'jurisprudencias': jurisprudencias[(3, '3.689', datetime.date(1941, 10, 3), '386')]},
-        (3, '3.689', datetime.date(1941, 10, 3), '386', None, None, 'III', None, None): {'artigo': ('386', None, None, 'III', None, None),
-                                                          'texto_artigo': 'III - não constituir o fato infração penal;',
-                                                          'jurisprudencias': jurisprudencias[(3, '3.689', datetime.date(1941, 10, 3), '386')]},
-        (3, '3.689', datetime.date(1941, 10, 3), '386', None, None, 'IV', None, None): {'artigo': ('386', None, None, 'IV', None, None),
-                                                          'texto_artigo': 'IV -  estar provado que o réu não concorreu para a infração penal;           (Redação dada pela Lei nº 11.690, de 2008)',
-                                                          'jurisprudencias': jurisprudencias[(3, '3.689', datetime.date(1941, 10, 3), '386')]},
-        (3, '3.689', datetime.date(1941, 10, 3), '386', None, None, 'V', None, None): {'artigo': ('386', None, None, 'V', None, None),
-                                                          'texto_artigo': 'V - não existir prova de ter o réu concorrido para a infração penal;          (Redação dada pela Lei nº 11.690, de 2008)',
-                                                          'jurisprudencias': jurisprudencias[(3, '3.689', datetime.date(1941, 10, 3), '386')]},
-        (3, '3.689', datetime.date(1941, 10, 3), '386', None, None, 'VI', None, None): {'artigo': ('386', None, None, 'VI', None, None),
-                                                          'texto_artigo': 'VI - existirem circunstâncias que excluam o crime ou isentem o réu de pena (arts. 20, 21, 22, 23, 26 e § 1º do art. 28, todos do Código Penal), ou mesmo se houver fundada dúvida sobre sua existência;            (Redação dada pela Lei nº 11.690, de 2008)',
-                                                          'jurisprudencias': jurisprudencias[(3, '3.689', datetime.date(1941, 10, 3), '386')]},
-        (3, '3.689', datetime.date(1941, 10, 3), '386', None, None, 'VII', None, None): {'artigo': ('386', None, None, 'VII', None, None),
-                                                          'texto_artigo': 'VII - não existir prova suficiente para a condenação.          (Incluído pela Lei nº 11.690, de 2008)',
-                                                          'jurisprudencias': jurisprudencias[(3, '3.689', datetime.date(1941, 10, 3), '386')]},
-        (3, '3.689', datetime.date(1941, 10, 3), '386', None, 'unico', None, None, None): {'artigo': ('386', None, 'unico', None, None, None),
-                                                                'texto_artigo': 'Parágrafo único.  Na sentença absolutória, o juiz:',
-                                                                'jurisprudencias': jurisprudencias[(3, '3.689', datetime.date(1941, 10, 3), '386')]},
-        (3, '3.689', datetime.date(1941, 10, 3), '386', None, 'unico', 'I', None, None): {'artigo': ('386', None, 'unico', 'I', None, None),
-                                                             'texto_artigo': 'I - mandará, se for o caso, pôr o réu em liberdade;',
-                                                             'jurisprudencia': jurisprudencias[(3, '3.689', datetime.date(1941, 10, 3), '386')]},
-        (3, '3.689', datetime.date(1941, 10, 3), '386', None, 'unico', 'II', None, None): {'artigo': ('386', None, 'unico', 'II', None, None),
-                                                             'texto_artigo': 'II - ordenará a cessação das medidas cautelares e provisoriamente aplicadas;         (Redação dada pela Lei nº 11.690, de 2008)',
-                                                             'jurisprudencias': jurisprudencias[(3, '3.689', datetime.date(1941, 10, 3), '386')]},
-        (3, '3.689', datetime.date(1941, 10, 3), '386', None, 'unico', 'III', None, None): {'artigo': ('386', None, 'unico', 'III', None, None),
-                                                             'texto_artigo': 'III - aplicará medida de segurança, se cabível.',
-                                                             'jurisprudencias': jurisprudencias[(3, '3.689', datetime.date(1941, 10, 3), '386')]}}
-d.update(d_01)
-
-d_02 = {(3, '3.689', datetime.date(1941, 10, 3), '387', None, None, None, None, None): {'artigo': ('387', None, None, None, None, None),
-                                                             'texto_artigo': 'Art. 387.  O juiz, ao proferir sentença condenatória:             (Vide Lei nº 11.719, de 2008)',
-                                                             'jurisprudencias': jurisprudencias[(3, '3.689', datetime.date(1941, 10, 3), '387')]},
-        (3, '3.689', datetime.date(1941, 10, 3), '387', None, None, 'I', None, None): {'artigo': ('387', None, None, 'I', None, None),
-                                                          'texto_artigo': 'I - mencionará as circunstâncias agravantes ou atenuantes definidas no Código Penal, e cuja existência reconhecer;',
-                                                          'jurisprudencias': jurisprudencias[(3, '3.689', datetime.date(1941, 10, 3), '387')]},
-        (3, '3.689', datetime.date(1941, 10, 3), '387', None, None, 'II', None, None): {'artigo': ('387', None, None, 'II', None, None),
-                                                          'texto_artigo': 'II - mencionará as outras circunstâncias apuradas e tudo o mais que deva ser levado em conta na aplicação da pena, de acordo com o disposto nos arts. 59 e 60 do Decreto-Lei no 2.848, de 7 de dezembro de 1940 - Código Penal;           (Redação dada pela Lei nº 11.719, de 2008).',
-                                                          'jurisprudencias': jurisprudencias[(3, '3.689', datetime.date(1941, 10, 3), '387')]},
-        (3, '3.689', datetime.date(1941, 10, 3), '387', None, None, 'III', None, None): {'artigo': ('387', None, None, 'III', None, None),
-                                                          'texto_artigo': 'III - aplicará as penas de acordo com essas conclusões;           (Redação dada pela Lei nº 11.719, de 2008).',
-                                                          'jurisprudencias': jurisprudencias[(3, '3.689', datetime.date(1941, 10, 3), '387')]},
-        (3, '3.689', datetime.date(1941, 10, 3), '387', None, None, 'IV', None, None): {'artigo': ('387', None, None, 'IV', None, None),
-                                                          'texto_artigo': 'IV - fixará valor mínimo para reparação dos danos causados pela infração, considerando os prejuízos sofridos pelo ofendido;           (Redação dada pela Lei nº 11.719, de 2008).',
-                                                          'jurisprudencias': jurisprudencias[(3, '3.689', datetime.date(1941, 10, 3), '387')]},
-        (3, '3.689', datetime.date(1941, 10, 3), '387', None, None, 'V', None, None): {'artigo': ('387', None, None, 'V', None, None),
-                                                          'texto_artigo': 'V - atenderá, quanto à aplicação provisória de interdições de direitos e medidas de segurança, ao disposto no Título Xl deste Livro;',
-                                                          'jurisprudencias': jurisprudencias[(3, '3.689', datetime.date(1941, 10, 3), '387')]},
-        (3, '3.689', datetime.date(1941, 10, 3), '387', None, None, 'VI', None, None): {'artigo': ('387', None, None, 'VI', None, None),
-                                                          'texto_artigo': 'VI - determinará se a sentença deverá ser publicada na íntegra ou em resumo e designará o jornal em que será feita a publicação (art. 73, § 1o, do Código Penal).',
-                                                          'jurisprudencias': jurisprudencias[(3, '3.689', datetime.date(1941, 10, 3), '387')]},
-        (3, '3.689', datetime.date(1941, 10, 3), '387', None, 1, None, None, None): {'artigo': ('387', None, 1, None, None, None),
-                                                          'texto_artigo': '§ 1o  O juiz decidirá, fundamentadamente, sobre a manutenção ou, se for o caso, a imposição de prisão preventiva ou de outra medida cautelar, sem prejuízo do conhecimento de apelação que vier a ser interposta. (Incluído pela Lei nº 12.736, de 2012)',
-                                                          'jurisprudencias': jurisprudencias[(3, '3.689', datetime.date(1941, 10, 3), '387')]},
-        (3, '3.689', datetime.date(1941, 10, 3), '387', None, 2, None, None, None): {'artigo': ('387', None, 2, None, None, None),
-                                                          'texto_artigo': '§ 2o  O tempo de prisão provisória, de prisão administrativa ou de internação, no Brasil ou no estrangeiro, será computado para fins de determinação do regime inicial de pena privativa de liberdade.            (Incluído pela Lei nº 12.736, de 2012)',
-                                                          'jurisprudencias': jurisprudencias[(3, '3.689', datetime.date(1941, 10, 3), '387')]}}
-d.update(d_02)
-
-d_03 = {(3, '3.689', datetime.date(1941, 10, 3), '403', None, None, None, None, None): {'artigo': ('403', None, None, None, None, None),
-                                                             'texto_artigo': 'Art. 403. Não havendo requerimento de diligências, ou sendo indeferido, serão oferecidas alegações finais orais por 20 (vinte) minutos, respectivamente, pela acusação e pela defesa, prorrogáveis por mais 10 (dez), proferindo o juiz, a seguir, sentença. (Redação dada pela Lei no 11.719, de 2008)',
-                                                             'jurisprudencias': jurisprudencias[(3, '3.689', datetime.date(1941, 10, 3), '403')]},
-        (3, '3.689', datetime.date(1941, 10, 3), '403', None, 1, None, None, None): {'artigo': ('403', None, 1, None, None, None),
-                                                          'texto_artigo': '§ 1o Havendo mais de um acusado, o tempo previsto para a defesa de cada um será individual. (Incluído pela Lei no 11.719, de 2008)',
-                                                          'jurisprudencias': jurisprudencias[(3, '3.689', datetime.date(1941, 10, 3), '403')]},
-        (3, '3.689', datetime.date(1941, 10, 3), '403', None, 2, None, None, None): {'artigo': ('403', None, 2, None, None, None),
-                                                          'texto_artigo': '§ § 2o Ao assistente do Ministério Público, após a manifestação desse, serão concedidos 10 (dez) minutos, prorrogando-se por igual período o tempo de manifestação da defesa. (Incluído pela Lei no 11.719, de 2008)',
-                                                          'jurisprudencias': jurisprudencias[(3, '3.689', datetime.date(1941, 10, 3), '403')]},
-        (3, '3.689', datetime.date(1941, 10, 3), '403', None, 3, None, None, None): {'artigo': ('403', None, 3, None, None, None),
-                                                          'texto_artigo': '§ 3o O juiz poderá, considerada a complexidade do caso ou o número de acusados, conceder às partes o prazo de 5 (cinco) dias sucessivamente para a apresentação de memoriais. Nesse caso, terá o prazo de 10 (dez) dias para proferir a sentença. (Incluído pela Lei no 11.719, de 2008)',
-                                                          'jurisprudencias': jurisprudencias[(3, '3.689', datetime.date(1941, 10, 3), '403')]}}
-d.update(d_03)
-
-d_04 = {(3, '3.689', datetime.date(1941, 10, 3), '404', None, None, None, None, None): {'artigo': ('404', None, None, None, None, None),
-                                                             'texto_artigo': 'Art. 404. Ordenado diligência considerada imprescindível, de ofício ou a requerimento da parte, a audiência será concluída sem as alegações finais. (Redação dada pela Lei no 11.719, de 2008)',
-                                                             'jurisprudencias': jurisprudencias[(3, '3.689', datetime.date(1941, 10, 3), '404')]},
-        (3, '3.689', datetime.date(1941, 10, 3), '404', None, 'unico', None, None, None): {'artigo': ('404', None, 'unico', None, None, None),
-                                                                'texto_artigo': 'Parágrafo único. Realizada, em seguida, a diligência determinada, as partes apresentarão, no prazo sucessivo de 5 (cinco) dias, suas alegações finais, por memorial, e, no prazo de 10 (dez) dias, o juiz proferirá a sentença. (Incluído pela Lei no 11.719, de 2008)',
-                                                                'jurisprudencias': jurisprudencias[(3, '3.689', datetime.date(1941, 10, 3), '404')]}}
-d.update(d_04)
-
-d_05 = {(3, '2.848', datetime.date(1940, 12, 7), '14', None, None, None, None, None): {'artigo': ('14', None, None, None, None, None),
-                                                            'texto_artigo': 'Art. 14 - Diz-se o crime: (Redação dada pela Lei nº 7.209, de 11.7.1984)',
-                                                            'jurisprudencias': jurisprudencias[(3, '2.848', datetime.date(1940, 12, 7), '13')]}, # Erro no GCL, jurisprudencia trocada nos artigos daquele codigo
-        (3, '2.848', datetime.date(1940, 12, 7), '14', None, None, 'I', None, None): {'artigo': ('14', None, None, 'I', None, None),
-                                                         'texto_artigo': 'I - consumado, quando nele se reúnem todos os elementos de sua definição legal; (Incluído pela Lei nº 7.209, de 11.7.1984)',
-                                                         'jurisprudencias': jurisprudencias[(3, '2.848', datetime.date(1940, 12, 7), '13')]}, # Erro no GCL, jurisprudencia trocada nos artigos daquele codigo
-        (3, '2.848', datetime.date(1940, 12, 7), '14', None, None, 'II', None, None): {'artigo': ('14', None, None, 'II', None, None),
-                                                         'texto_artigo': 'II - tentado, quando, iniciada a execução, não se consuma por circunstâncias alheias à vontade do agente. (Incluído pela Lei nº 7.209, de 11.7.1984)',
-                                                         'jurisprudencias': jurisprudencias[(3, '2.848', datetime.date(1940, 12, 7), '13')]}, # Erro no GCL, jurisprudencia trocada nos artigos daquele codigo
-        (3, '2.848', datetime.date(1940, 12, 7), '14', None, 'unico', None, None, None): {'artigo': ('14', None, 'unico', None, None, None),
-                                                               'texto_artigo': 'Parágrafo único - Salvo disposição em contrário, pune-se a tentativa com a pena correspondente ao crime consumado, diminuída de um a dois terços.(Incluído pela Lei nº 7.209, de 11.7.1984)',
-                                                               'jurisprudencias': jurisprudencias[(3, '2.848', datetime.date(1940, 12, 7), '13')]}} # Erro no GCL, jurisprudencia trocada nos artigos daquele codigo
-d.update(d_05)
-
-d_06 = {(3, '2.848', datetime.date(1940, 12, 7), '17', None, None, None, None, None): {'artigo': ('17', None, None, None, None, None),
-                                                            'texto_artigo': 'Art. 17 - Não se pune a tentativa quando, por ineficácia absoluta do meio ou por absoluta impropriedade do objeto, é impossível consumar-se o crime. (Redação dada pela Lei no 7.209, de 11.7.1984)',
-                                                            'jurisprudencias': jurisprudencias[(3, '2.848', datetime.date(1940, 12, 7), '16')]}} # Erro no GCL, jurisprudencia trocada nos artigos daquele codigo
-d.update(d_06)
-
-
-d_07 = {(3, '2.848', datetime.date(1940, 12, 7), '33', None, None, None, None, None): {'artigo': ('33', None, None, None, None, None),
-                                                            'texto_artigo': 'Art. 33 - A pena de reclusão deve ser cumprida em regime fechado, semi-aberto ou aberto. A de detenção, em regime semi-aberto, ou aberto, salvo necessidade de transferência a regime fechado. (Redação dada pela Lei nº 7.209, de 11.7.1984)',
-                                                            'jurisprudencias': jurisprudencias[(3, '2.848', datetime.date(1940, 12, 7), '32')]}, # Erro no GCL, jurisprudencia trocada nos artigos daquele codigo
-        (3, '2.848', datetime.date(1940, 12, 7), '33', None, '1', None, None, None): {'artigo': ('33', None, 1, None, None, None),
-                                                         'texto_artigo': '§ 1º - Considera-se: (Redação dada pela Lei nº 7.209, de 11.7.1984)',
-                                                         'jurisprudencias': jurisprudencias[(3, '2.848', datetime.date(1940, 12, 7), '32')]}, # Erro no GCL, jurisprudencia trocada nos artigos daquele codigo        
-        (3, '2.848', datetime.date(1940, 12, 7), '33', None, '1', None, None, 'a', None): {'artigo': ('33', None, 1, None, None, 'a', None),
-                                                              'texto_artigo': 'a) regime fechado a execução da pena em estabelecimento de segurança máxima ou média;',
-                                                              'jurisprudencias': jurisprudencias[(3, '2.848', datetime.date(1940, 12, 7), '32')]}, # Erro no GCL, jurisprudencia trocada nos artigos daquele codigo
-        (3, '2.848', datetime.date(1940, 12, 7), '33', None, '1', None, None, 'b', None): {'artigo': ('33', None, 1, None, None, 'b', None),
-                                                              'texto_artigo': 'b) regime semi-aberto a execução da pena em colônia agrícola, industrial ou estabelecimento similar;',
-                                                              'jurisprudencias': jurisprudencias[(3, '2.848', datetime.date(1940, 12, 7), '32')]}, # Erro no GCL, jurisprudencia trocada nos artigos daquele codigo
-        (3, '2.848', datetime.date(1940, 12, 7), '33', None, '1', None, None, 'c', None): {'artigo': ('33', None, 1, None, None, 'c', None),
-                                                              'texto_artigo': 'c) regime aberto a execução da pena em casa de albergado ou estabelecimento adequado.',
-                                                              'jurisprudencias': jurisprudencias[(3, '2.848', datetime.date(1940, 12, 7), '32')]}, # Erro no GCL, jurisprudencia trocada nos artigos daquele codigo
-        (3, '2.848', datetime.date(1940, 12, 7), '33', None, '2', None, None, None): {'artigo': ('33', None, 2, None, None, None),
-                                                         'texto_artigo': '§ 2º - As penas privativas de liberdade deverão ser executadas em forma progressiva, segundo o mérito do condenado, observados os seguintes critérios e ressalvadas as hipóteses de transferência a regime mais rigoroso: (Redação dada pela Lei nº 7.209, de 11.7.1984)',
-                                                         'jurisprudencias': jurisprudencias[(3, '2.848', datetime.date(1940, 12, 7), '32')]}, # Erro no GCL, jurisprudencia trocada nos artigos daquele codigo
-        (3, '2.848', datetime.date(1940, 12, 7), '33', None, '2', None, None, 'a', None): {'artigo': ('33', None, 2, None, None, 'a', None),
-                                                              'texto_artigo': 'a) o condenado a pena superior a 8 (oito) anos deverá começar a cumpri-la em regime fechado;',
-                                                              'jurisprudencias': jurisprudencias[(3, '2.848', datetime.date(1940, 12, 7), '32')]}, # Erro no GCL, jurisprudencia trocada nos artigos daquele codigo
-        (3, '2.848', datetime.date(1940, 12, 7), '33', None, '2', None, None, 'b', None): {'artigo': ('33', None, 2, None, None, 'b', None),
-                                                              'texto_artigo': 'b) o condenado não reincidente, cuja pena seja superior a 4 (quatro) anos e não exceda a 8 (oito), poderá, desde o princípio, cumpri-la em regime semi-aberto;',
-                                                              'jurisprudencias': jurisprudencias[(3, '2.848', datetime.date(1940, 12, 7), '32')]}, # Erro no GCL, jurisprudencia trocada nos artigos daquele codigo
-        (3, '2.848', datetime.date(1940, 12, 7), '33', None, '2', None, None, 'c', None): {'artigo': ('33', None, 2, None, None, 'c', None),
-                                                              'texto_artigo': 'c) o condenado não reincidente, cuja pena seja igual ou inferior a 4 (quatro) anos, poderá, desde o início, cumpri-la em regime aberto.',
-                                                              'jurisprudencias': jurisprudencias[(3, '2.848', datetime.date(1940, 12, 7), '32')]}, # Erro no GCL, jurisprudencia trocada nos artigos daquele codigo
-        (3, '2.848', datetime.date(1940, 12, 7), '33', None, '3', None, None, None): {'artigo': ('33', None, 3, None, None, None),
-                                                         'texto_artigo': '§ 3º - A determinação do regime inicial de cumprimento da pena far-se-á com observância dos critérios previstos no art. 59 deste Código.(Redação dada pela Lei nº 7.209, de 11.7.1984)',
-                                                         'jurisprudencias': jurisprudencias[(3, '2.848', datetime.date(1940, 12, 7), '32')]}, # Erro no GCL, jurisprudencia trocada nos artigos daquele codigo
-        (3, '2.848', datetime.date(1940, 12, 7), '33', None, '4', None, None, None): {'artigo': ('33', None, 4, None, None, None),
-                                                         'texto_artigo': '§ 4o O condenado por crime contra a administração pública terá a progressão de regime do cumprimento da pena condicionada à reparação do dano que causou, ou à devolução do produto do ilícito praticado, com os acréscimos legais. (Incluído pela Lei nº 10.763, de 12.11.2003)',
-                                                         'jurisprudencias': jurisprudencias[(3, '2.848', datetime.date(1940, 12, 7), '32')]}} # Erro no GCL, jurisprudencia trocada nos artigos daquele codigo
-d.update(d_07)
-
-d_08 = {(3, '2.848', datetime.date(1940, 12, 7), '44', None, None, None, None, None): {'artigo': ('44', None, None, None, None, None),
-                                                            'texto_artigo': 'Art. 44. As penas restritivas de direitos são autônomas e substituem as privativas de liberdade, quando: (Redação dada pela Lei n° 9.714, de 1998)',
-                                                            'jurisprudencias': jurisprudencias[(3, '2.848', datetime.date(1940, 12, 7), '42')]}, # Erro no GCL, jurisprudencia trocada nos artigos daquele codigo
-        (3, '2.848', datetime.date(1940, 12, 7), '44', None, None, 'I', None, None): {'artigo': ('44', None, None, 'I', None, None),
-                                                         'texto_artigo': 'I aplicada pena privativa de liberdade não superior a quatro anos e o crime não for cometido com violência ou grave ameaça à pessoa ou, qualquer que seja a pena aplicada, se o crime for culposo;(Redação dada pela Lei n° 9.714, de 1998)',
-                                                         'jurisprudencias': jurisprudencias[(3, '2.848', datetime.date(1940, 12, 7), '42')]}, # Erro no GCL, jurisprudencia trocada nos artigos daquele codigo
-        (3, '2.848', datetime.date(1940, 12, 7), '44', None, None, 'II', None, None): {'artigo': ('44', None, None, 'II', None, None),
-                                                         'texto_artigo': 'II o réu não for reincidente em crime doloso; (Redação dada pela Lei n° 9.714, de 1998)',
-                                                         'jurisprudencias': jurisprudencias[(3, '2.848', datetime.date(1940, 12, 7), '42')]}, # Erro no GCL, jurisprudencia trocada nos artigos daquele codigo
-        (3, '2.848', datetime.date(1940, 12, 7), '44', None, None, 'III', None, None): {'artigo': ('44', None, None, 'III', None, None),
-                                                         'texto_artigo': 'III a culpabilidade, os antecedentes, a conduta social e a personalidade do condenado, bem como os motivos e as circunstâncias indicarem que essa substituição seja suficiente. (Redação dada pela Lei n° 9.714, de 1998)',
-                                                         'jurisprudencias': jurisprudencias[(3, '2.848', datetime.date(1940, 12, 7), '42')]}, # Erro no GCL, jurisprudencia trocada nos artigos daquele codigo
-        (3, '2.848', datetime.date(1940, 12, 7), '44', None, '1', None, None, None): {'artigo': ('44', None, 1, None, None, None),
-                                                         'texto_artigo': '§ 1° (VETADO) (Incluído pela Lei n° 9.714, de 1998)',
-                                                         'jurisprudencias': jurisprudencias[(3, '2.848', datetime.date(1940, 12, 7), '42')]}, # Erro no GCL, jurisprudencia trocada nos artigos daquele codigo
-        (3, '2.848', datetime.date(1940, 12, 7), '44', None, '2', None, None, None): {'artigo': ('44', None, 2, None, None, None),
-                                                         'texto_artigo': '§ 2° Na condenação igual ou inferior a um ano, a substituição pode ser feita por multa ou por uma pena restritiva de direitos; se superior a um ano, a pena privativa de liberdade pode ser substituída por uma pena restritiva de direitos e multa ou por duas restritivas de direitos. (Incluído pela Lei n° 9.714, de 1998)',
-                                                         'jurisprudencias': jurisprudencias[(3, '2.848', datetime.date(1940, 12, 7), '42')]}, # Erro no GCL, jurisprudencia trocada nos artigos daquele codigo
-        (3, '2.848', datetime.date(1940, 12, 7), '44', None, '3', None, None, None): {'artigo': ('44', None, 3, None, None, None),
-                                                         'texto_artigo': '§ 3° Se o condenado for reincidente, o juiz poderá aplicar a substituição, desde que, em face de condenação anterior, a medida seja socialmente recomendável e a reincidência não se tenha operado em virtude da prática do mesmo crime. (Incluído pela Lei n° 9.714, de 1998)',
-                                                         'jurisprudencias': jurisprudencias[(3, '2.848', datetime.date(1940, 12, 7), '42')]}, # Erro no GCL, jurisprudencia trocada nos artigos daquele codigo
-        (3, '2.848', datetime.date(1940, 12, 7), '44', None, '4', None, None, None): {'artigo': ('44', None, 4, None, None, None),
-                                                         'texto_artigo': '§ 4° A pena restritiva de direitos converte-se em privativa de liberdade quando ocorrer o descumprimento injustificado da restrição imposta. No cálculo da pena privativa de liberdade a executar será deduzido o tempo cumprido da pena restritiva de direitos, respeitado o saldo mínimo de trinta dias de detenção ou reclusão. (Incluído pela Lei n° 9.714, de 1998)',
-                                                         'jurisprudencias': jurisprudencias[(3, '2.848', datetime.date(1940, 12, 7), '42')]}, # Erro no GCL, jurisprudencia trocada nos artigos daquele codigo
-        (3, '2.848', datetime.date(1940, 12, 7), '44', None, '5', None, None, None): {'artigo': ('44', None, 5, None, None, None),
-                                                         'texto_artigo': '§ 5° Sobrevindo condenação a pena privativa de liberdade, por outro crime, o juiz da execução penal decidirá sobre a conversão, podendo deixar de aplicá-la se for possível ao condenado cumprir a pena substitutiva anterior. (Incluído pela Lei n° 9.714, de 1998)',
-                                                         'jurisprudencias': jurisprudencias[(3, '2.848', datetime.date(1940, 12, 7), '42')]}} # Erro no GCL, jurisprudencia trocada nos artigos daquele codigo
-d.update(d_08)
-
-d_09 = {(3, '2.848', datetime.date(1940, 12, 7), '65', None, None, None, None, None): {'artigo': ('65', None, None, None, None, None),
-                                                            'texto_artigo': 'Art. 65 - São circunstâncias que sempre atenuam a pena: (Redação dada pela Lei nº 7.209, de 11.7.1984)',
-                                                            'jurisprudencias': jurisprudencias[(3, '2.848', datetime.date(1940, 12, 7), '63')]}, # Erro no GCL, jurisprudencia trocada nos artigos daquele codigo
-        (3, '2.848', datetime.date(1940, 12, 7), '65', None, None, 'I', None, None): {'artigo': ('65', None, None, 'I', None, None),
-                                                         'texto_artigo': ' I - ser o agente menor de 21 (vinte e um), na data do fato, ou maior de 70 (setenta) anos, na data da sentença; (Redação dada pela Lei nº 7.209, de 11.7.1984)',
-                                                         'jurisprudencias': jurisprudencias[(3, '2.848', datetime.date(1940, 12, 7), '63')]}, # Erro no GCL, jurisprudencia trocada nos artigos daquele codigo
-        (3, '2.848', datetime.date(1940, 12, 7), '65', None, None, 'II', None, None): {'artigo': ('65', None, None, 'II', None, None),
-                                                         'texto_artigo': 'II - o desconhecimento da lei; (Redação dada pela Lei nº 7.209, de 11.7.1984)',
-                                                         'jurisprudencias': jurisprudencias[(3, '2.848', datetime.date(1940, 12, 7), '63')]}, # Erro no GCL, jurisprudencia trocada nos artigos daquele codigo
-        (3, '2.848', datetime.date(1940, 12, 7), '65', None, None, 'III', None, None): {'artigo': ('65', None, None, 'III', None, None),
-                                                         'texto_artigo': 'III - ter o agente:(Redação dada spela Lei nº 7.209, de 11.7.1984)',
-                                                         'jurisprudencias': jurisprudencias[(3, '2.848', datetime.date(1940, 12, 7), '63')]}, # Erro no GCL, jurisprudencia trocada nos artigos daquele codigo
-        (3, '2.848', datetime.date(1940, 12, 7), '65', None, None, 'III', 'a', None): {'artigo': ('65', None, None, 'III', 'a', None),
-                                                        'texto_artigo': 'a) cometido o crime por motivo de relevante valor social ou moral;',
-                                                        'jurisprudencias': jurisprudencias[(3, '2.848', datetime.date(1940, 12, 7), '63')]}, # Erro no GCL, jurisprudencia trocada nos artigos daquele codigo
-        (3, '2.848', datetime.date(1940, 12, 7), '65', None, None, 'III', 'b', None): {'artigo': ('65', None, None, 'III', 'b', None),
-                                                        'texto_artigo': 'b) procurado, por sua espontânea vontade e com eficiência, logo após o crime, evitar-lhe ou minorar-lhe as conseqüências, ou ter, antes do julgamento, reparado o dano;',
-                                                        'jurisprudencias': jurisprudencias[(3, '2.848', datetime.date(1940, 12, 7), '63')]}, # Erro no GCL, jurisprudencia trocada nos artigos daquele codigo
-        (3, '2.848', datetime.date(1940, 12, 7), '65', None, None, 'III', 'c', None): {'artigo': ('65', None, None, 'III', 'c', None),
-                                                        'texto_artigo': 'c) cometido o crime sob coação a que podia resistir, ou em cumprimento de ordem de autoridade superior, ou sob a influência de violenta emoção, provocada por ato injusto da vítima;',
-                                                        'jurisprudencias': jurisprudencias[(3, '2.848', datetime.date(1940, 12, 7), '63')]}, # Erro no GCL, jurisprudencia trocada nos artigos daquele codigo
-        (3, '2.848', datetime.date(1940, 12, 7), '65', None, None, 'III', 'd', None): {'artigo': ('65', None, None, 'III', 'd', None),
-                                                        'texto_artigo': 'd) confessado espontaneamente, perante a autoridade, a autoria do crime;',
-                                                        'jurisprudencias': jurisprudencias[(3, '2.848', datetime.date(1940, 12, 7), '63')]}, # Erro no GCL, jurisprudencia trocada nos artigos daquele codigo
-        (3, '2.848', datetime.date(1940, 12, 7), '65', None, None, 'III', 'e', None): {'artigo': ('65', None, None, 'III', 'e', None),
-                                                        'texto_artigo': 'e) cometido o crime sob a influência de multidão em tumulto, se não o provocou.',
-                                                        'jurisprudencias': jurisprudencias[(3, '2.848', datetime.date(1940, 12, 7), '63')]}} # Erro no GCL, jurisprudencia trocada nos artigos daquele codigo
-d.update(d_09)
->>>>>>> a73e04b86103b8f9fd7053e6110a7e308826d6b2
 ### MOCK DATA ###

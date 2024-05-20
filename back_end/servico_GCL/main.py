@@ -1,10 +1,5 @@
-<<<<<<< HEAD
 import re
 from datetime import date
-=======
-import regex as re
-
->>>>>>> a73e04b86103b8f9fd7053e6110a7e308826d6b2
 from roman import toRoman, fromRoman, InvalidRomanNumeralError
 from pickle import load
 from unicodedata import normalize
@@ -12,11 +7,7 @@ from unicodedata import normalize
 # Necessário, se não bug. param: Legis_Class = Arquivo .py com a classe Legis. script.py não funciona.
 from Entities.Legislacao import Legislacao
 
-<<<<<<< HEAD
 ARQUIVO_DIC = r'caminho-dic'
-=======
-ARQUIVO_DIC = 'dicionario_legislacao.dic'
->>>>>>> a73e04b86103b8f9fd7053e6110a7e308826d6b2
 
 
 def artigo_tree(texto_legis, artigo, arg_artigo, paragrafo, inciso, alinea, item):
@@ -365,7 +356,6 @@ def new_art_tree(artigo, arg_artigo, paragrafo, inciso, alinea, item, block, who
 def busca_norma(tipo, num, ano, arquivo_dic):
     lista_disp = []
     for k in arquivo_dic.keys():
-<<<<<<< HEAD
         #separar valores da chave
         valores = k.split('_')
         
@@ -374,30 +364,18 @@ def busca_norma(tipo, num, ano, arquivo_dic):
                 lista_disp.append(k)
         else:
             if tipo == int(valores[0]) and num == valores[1]:
-=======
-        if ano:
-            if tipo == k[0] and num == k[1] and ano == k[2].year:
-                lista_disp.append(k)
-        else:
-            if tipo == k[0] and num == k[1]:
->>>>>>> a73e04b86103b8f9fd7053e6110a7e308826d6b2
                 lista_disp.append(k)
     return lista_disp
 
 
 def consulta_texto_lei(arquivo_dic, legislacao):
 
-<<<<<<< HEAD
     lista_disp = busca_norma(legislacao[0], legislacao[1], int(str(legislacao[2]).split('-')[0]), arquivo_dic)
-=======
-    lista_disp = busca_norma(legislacao[0], legislacao[1], legislacao[2], arquivo_dic)
->>>>>>> a73e04b86103b8f9fd7053e6110a7e308826d6b2
 
     if len(lista_disp) == 0:
         return None
 
     lista_dict_results = []
-<<<<<<< HEAD
 
     for chave_legis in lista_disp:
         texto_legis = arquivo_dic[chave_legis]['texto']
@@ -405,16 +383,6 @@ def consulta_texto_lei(arquivo_dic, legislacao):
             if arquivo_dic[chave_legis]['ementa'] is None:
                 lista_dict_results.append({f'{chave_legis}': 'None'})
             lista_dict_results.append({f'{chave_legis}': normalize('NFKD', f'{arquivo_dic[chave_legis]['ementa']}')})
-=======
-    append_lista_dict_results = lista_dict_results.append
-
-    for chave_legis in lista_disp:
-        texto_legis = arquivo_dic[chave_legis].texto
-        if texto_legis == '':
-            if arquivo_dic[chave_legis].ementa is None:
-                append_lista_dict_results({f'{chave_legis}': 'None'})
-            append_lista_dict_results({f'{chave_legis}': normalize('NFKD', f'{arquivo_dic[chave_legis].ementa}')})
->>>>>>> a73e04b86103b8f9fd7053e6110a7e308826d6b2
             continue
 
         artigo = legislacao[3]
@@ -425,10 +393,7 @@ def consulta_texto_lei(arquivo_dic, legislacao):
         # TODO: Provavelmente necessário modificar esta lógica.
         # append_lista_dict_results({f'{chave_legis}': 'None'})
         # continue
-<<<<<<< HEAD
         
-=======
->>>>>>> a73e04b86103b8f9fd7053e6110a7e308826d6b2
         if inciso != '0':
             try:
                 inciso = fromRoman(inciso.upper())
@@ -440,7 +405,6 @@ def consulta_texto_lei(arquivo_dic, legislacao):
 
         if artigo != '0':
             if artigo_tree(texto_legis, artigo, arg_artigo, paragrafo, inciso, alinea, item) is None:
-<<<<<<< HEAD
                 lista_dict_results.append({f'{chave_legis}': 'None'})
             else:
                 try:
@@ -458,25 +422,6 @@ def consulta_texto_lei(arquivo_dic, legislacao):
                 lista_dict_results.append({f'{chave_legis}': 'None'})
             else:
                 lista_dict_results.append({f'{chave_legis}': normalize('NFKD', f'{arquivo_dic[chave_legis]['ementa']}')})
-=======
-                append_lista_dict_results({f'{chave_legis}': 'None'})
-            else:
-                try:
-                    artigo_index = int(artigo.replace('.', '')) - 1
-                    if artigo_index < len(arquivo_dic[chave_legis].get_as_dict()['jurisprudencias']):
-                        append_lista_dict_results({f'{chave_legis}': [normalize('NFKD', artigo_tree(texto_legis, artigo, arg_artigo, paragrafo, inciso, alinea, item)),
-                                                                      arquivo_dic[chave_legis].get_as_dict()['jurisprudencias'][artigo_index]]})
-                    else:
-                        append_lista_dict_results({f'{chave_legis}': normalize('NFKD', artigo_tree(texto_legis, artigo, arg_artigo, paragrafo, inciso, alinea, item))})
-                except Exception as e:
-                    append_lista_dict_results({f'{chave_legis}': 'None'})
-
-        else:
-            if arquivo_dic[chave_legis].ementa is None:
-                append_lista_dict_results({f'{chave_legis}': 'None'})
-            else:
-                append_lista_dict_results({f'{chave_legis}': normalize('NFKD', f'{arquivo_dic[chave_legis].ementa}')})
->>>>>>> a73e04b86103b8f9fd7053e6110a7e308826d6b2
 
 
     return lista_dict_results
@@ -486,7 +431,6 @@ fp = open(ARQUIVO_DIC, 'rb')
 dic_leis = load(fp)
 fp.close()
 
-<<<<<<< HEAD
 #legislacao = (11, "100", date(2019, 6, 26), "1", "0", "0", "iii", "0", "0")
 
  #legislacao = (11, '113', date(2021, 12, 8), '4', '0', '3', '0', '0', '0')
@@ -496,17 +440,6 @@ fp.close()
 #legislacao = (0, "10.736", date(2003, 9, 15), "1", "0", "3", "0", "0", "0")
 
 #legislacao = (0, "14.166", date(2021, 6, 10), "6", "0", "7", "Ii", "a", "1")
-=======
-# legislacao = (11, "100", date(2019, 6, 26), "1", "0", "0", "iii", "0", "0")
-
-# legislacao = (11, '113', date(2021, 12, 8), '4', '0', '3', '0', '0', '0')
-
-# legislacao = (2, '179', date(2021, 2, 24), '6', '0', '5', '0', '0', '0')
-
-# legislacao = (0, "10.736", date(2003, 9, 15), "1", "0", "3", "0", "0", "0")
-
-# legislacao = (0, "14.166", date(2021, 6, 10), "6", "0", "7", "Ii", "a", "1")
->>>>>>> a73e04b86103b8f9fd7053e6110a7e308826d6b2
 
 # legislacao = (0, "14.390", date(2022, 7, 4), "5", "0", "0", "i", "b", "0")
 
@@ -530,20 +463,9 @@ fp.close()
 
 # legislacao = (1, '301', 0, "0", "0", "0", "0", "0", "0")
 
-<<<<<<< HEAD
 #legislacao = (7, "1.988", date(1973, 2, 24), "0", "0", "0", "0", "0", "0")
 
 #resultado = consulta_texto_lei(dic_leis, legislacao)
 
 # Descomentar para rodar na main.
 #print(resultado)
-
-=======
-# legislacao = (0, "9.455", 1997, "1", "0", "0", "0", "0", "0")
-
-# resultado = consulta_texto_lei(dic_leis, legislacao)
-
-# Descomentar para rodar na main.
-# print(resultado)
->>>>>>> a73e04b86103b8f9fd7053e6110a7e308826d6b2
-
