@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -62,4 +63,70 @@
 	</div>
 	
 </body>
+=======
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iframe</title>
+    <style>
+        .container {
+			height: 20rem;
+            width: 60rem;
+			overflow-y: auto;
+			-webkit-overflow-scrolling: touch;
+        }   
+        #ifrm{
+            height: 18rem;
+            width: 40rem;
+        }
+    </style>
+   
+</head>
+<body>
+    <h1>Simulação do ambiente do PJe</h1>
+	<div class="container">
+		<iframe id="ifrm" frameborder="1"></iframe>
+	</div>
+
+	<script type="text/template" id="iframeContent">
+		<!DOCTYPE html>
+		<html lang="en">
+		<head>
+			<meta charset="UTF-8">
+			<title>Inner</title>
+		</head>
+		<body contenteditable="true">
+		<p>Digite sua petição aqui.</p>
+		</body>
+		</html>
+	</script>
+	<script>
+		var iframe = document.getElementById("ifrm");
+		var content = document.getElementById("iframeContent").innerHTML;
+		var frameDoc = iframe.document;
+		if (iframe.contentWindow)
+			frameDoc = iframe.contentWindow.document;
+
+		frameDoc.open();
+		frameDoc.writeln(content);
+		frameDoc.close();
+
+		const ifr = document.querySelector("iframe").contentWindow;
+        let bodyifr = ifr.document.querySelector("body");
+		function alertTxt(){
+			console.log(bodyifr.innerHTML);
+		}
+	</script>
+	<button id="j_id608"" onclick="alertTxt()">
+		Salvar
+	</button>
+	<div class="sidebar">
+		
+	</div>
+	
+</body>
+>>>>>>> a73e04b86103b8f9fd7053e6110a7e308826d6b2
 </html>

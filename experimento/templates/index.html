@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html>
 <head>
@@ -417,3 +418,424 @@
     </script>
 </body>
 </html>
+=======
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Exemplo de Página</title>
+    <style>
+        .hidden {
+            display: none;
+        }
+
+        #textFrame {
+            width: 100%;
+            height: 150px;
+            border: 1px solid #ccc;
+        }
+        
+        body, html {
+            height: 100%;
+            margin: 0;
+        }
+
+        body {
+            display: grid;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #startButton,#submitButton {
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #ffffff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #startButton:hover,#submitButton:hover {
+            background-color: #0056b3;
+        }
+
+        #mainContent{
+            display: grid;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #inputContainer{
+            width: 80vw;
+        }
+
+        #nameUser{
+            width: 30vw;
+            margin-right: 5vw;
+            margin-bottom: 5vh;
+            margin-top: 10vh;
+        }
+
+        #codExp{
+            width: 30vw;
+            margin-bottom: 5vh;
+        }
+
+        #link-form-sec{
+            visibility: hidden;
+        }
+
+        #textFrame{
+            height: 50vh;
+            margin-bottom: 5vh;
+            border: 1px solid #ced4da;
+            border-radius: 0.25rem;
+            transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        }
+
+        #textFrame:focus {
+            outline: 0;
+            border-color: #80bdff;
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+        }
+
+        #partPeticao{
+            width: inherit;
+            height: 35vh;
+            margin-bottom: 5vh;
+        }
+
+        /* Estilos para os campos de input */
+        input[type="text"],
+        input[type="password"],
+        input[type="email"],
+        input[type="number"],
+        input[type="tel"],
+        textarea {
+            display: block;
+            width: 100%;
+            padding: 0.375rem 0.75rem;
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.5;
+            color: #495057;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid #ced4da;
+            border-radius: 0.25rem;
+            transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        }
+
+        /* Estilos para o foco no campo de input */
+        input[type="text"]:focus,
+        input[type="password"]:focus,
+        input[type="email"]:focus,
+        input[type="number"]:focus,
+        input[type="tel"]:focus,
+        textarea:focus {
+            outline: 0;
+            border-color: #80bdff;
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+        }
+
+        #peticao-content {
+            width: 80%;
+            margin: 0 auto;
+            margin-top: 5rem;
+            margin-bottom: 5rem;
+            padding-bottom: 5rem;
+            padding: 20px;
+        
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            line-height: 1.5;
+
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            background-color: #f9f9f9;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div id="mainContent">
+        <h2>Clique aqui para iniciar o experimento</h2>
+        <button id="startButton">Iniciar</button>
+    </div>
+
+    <div id="inputContainer" class="hidden">
+        <input type="text" id="nameUser" placeholder="Digite seu id">
+        <input type="number" id="codExp" placeholder="Digite o código do experimento">
+        
+        <!-- <iframe id="partPeticao" src ="https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709.htm"></iframe> -->
+        <div id = "peticao-content">
+            <h3>ENUNCIADO DA PETIÇÃO</h3>
+            <p>
+            Ricardo e Roberto, no dia 10/08/2020, às 19 horas, foram flagrados pela Polícia Militar quando saíam da agência bancária do Banco Peixe, localizada no centro de Barnabeu, Estado de Campo Novo (CN), de posse de equipamentos tipo serrote, chave de fenda e alicate. A Polícia Militar fora acionada por vigilantes da agência que, remotamente, por meio de câmeras de segurança, acompanharam a ação de Ricardo e Roberto, que tentaram utilizar o serrote para romper a placa de aço e, assim, ter acesso ao conteúdo dos caixas eletrônicos da agência. Após 30 minutos de tentativas, Ricardo e Roberto deixaram a agência, momento em que, já ao lado de fora, foram abordados pelos policiais militares. Com base em tais fatos, e constando como elemento informativo produzido no inquérito apenas a oitiva dos acusados e dos policiais, Ricardo e Roberto foram denunciados como incursos nas penas do Art. 155, § 4º, incisos I e IV, e do Art. 14, inciso II, ambos do Código Penal. A denúncia foi distribuída ao Juízo competente da 5ª Vara Criminal da Comarca de Barnabeu-CN. A prisão em flagrante de Ricardo foi convertida em preventiva, para a garantia da ordem pública, salientando-se que Ricardo possuía condenação anterior pela prática de furto de caixa eletrônico, cuja pena foi cumprida e extinta em 10/04/2019. Já Roberto obteve liberdade provisória na audiência de custódia, realizada no dia seguinte à prisão em flagrante. Ricardo obteve ordem de habeas corpus, que o pôs em liberdade após 30 (trinta) dias preso, condicionada a cautelares diversas da prisão. A instrução processual repetiu as provas orais realizadas na fase inquisitiva, tendo sido ouvidos os Policiais Militares e, em seguida, realizado o interrogatório dos réus, que confessaram a tentativa de arrombamento do caixa eletrônico. Afirmaram que, com o serrote e a chave de fenda, tentaram romper a ferragem do caixa ou abrir os parafusos, mas, após cerca de 30 minutos dentro da agência, apenas conseguiram realizar arranhões na proteção de aço existente, razão pela qual paralisaram a ação e saíram da agência, quando então, do lado de fora, foram abordados por Policiais Militares. Finalizada a instrução, o Ministério Público não requereu a produção de outras provas. Em diligência requerida pela defesa, foi juntado aos autos um ofício do Banco Peixe, que informou ao Juízo que a estrutura do caixa eletrônico é de aço, imune à ação mecânica por força humana, e que os acusados não lograram danificar a estrutura do caixa eletrônico. Os autos foram enviados ao Ministério Público para manifestação, o qual postulou pela condenação dos acusados, nos termos da denúncia. O(A) advogado(a) constituído(a) foi intimado(a) no dia 11/04/2023 (terça-feira). 
+            </p>
+            
+            <h3>Na condição de advogado(a) dos réus, tendo como referência o que foi exposto no enunciado, redija o tópico "Do Direito" ("Dos Fundamentos Jurídicos", "Do Mérito") da peça processual adequada, diferente do habeas corpus e embargos de declaração:</h3>
+            <div style="display:flex;"><p>Quantidade de palavra: 2000/</p><p id="qtdPalavras"></p></div>
+            <iframe id="textFrame" contenteditable="true" class="hidden" scrolling="yes"></iframe>
+            <button id="submitButton">Enviar</button>
+        </div>
+    </div>
+
+    <div id="timerContainer" class="hidden">
+        <h2 id="timerDisplay">00:00:00</h2>
+        <h2 id="timerDisplay2">00:00:00</h2>
+    </div>
+
+    <div id="fim-pesquisa" class="hidden">
+        <h1 id="msg-final">Pesquisa concluída. Obrigado por participar!</h1>
+        <a id="link-form-sec" href="https://docs.google.com/forms/d/e/1FAIpQLSfsKJzO4vi3XmSjDWCmyZ0kCtCZ_HQKNkvlJFtlGYQDz7wnqQ/viewform">Clique aqui para preencher o formulário de avaliação do software</a>
+    </div>
+
+    <script type="text/template" id="iframeContent">
+		<!DOCTYPE html>
+		<html lang="en">
+		<head>
+			<meta charset="UTF-8">
+			<title>Inner</title>
+		</head>
+		<body contenteditable="true" spellcheck="false">
+		<p>Digite sua petição aqui.</p>
+		</body>
+		</html>
+	</script>
+
+    <script>
+        var startButton = document.getElementById("startButton");
+        var inputContainer = document.getElementById("inputContainer");
+        
+        var timerContainer = document.getElementById("timerContainer");
+
+        var fimPesquisa = document.getElementById("fim-pesquisa");
+        var submitButton = document.getElementById("submitButton");
+        var timerDisplay = document.getElementById("timerDisplay");
+        var timerDisplay2 = document.getElementById("timerDisplay2");
+        var textFrame = document.getElementById("textFrame");
+        var nameUser = document.getElementById("nameUser");
+        var codExp = document.getElementById("codExp");
+
+        var mainContent = document.getElementById("mainContent");
+
+        var iframe = textFrame
+		var content = document.getElementById("iframeContent").innerHTML;
+		var frameDoc = iframe.document;
+		if (iframe.contentWindow)
+			frameDoc = iframe.contentWindow.document;
+
+		frameDoc.open();
+		frameDoc.writeln(content);
+		frameDoc.close();
+
+		const ifr = document.querySelector("#textFrame").contentWindow;
+        let bodyifr = ifr.document.querySelector("body");
+		function alertTxt(){
+			console.log(bodyifr.innerHTML);
+		}
+
+        startButton.addEventListener("click", function() {
+            startButton.style.display = "none";
+            mainContent.style.display ="none";
+            inputContainer.style.display = "block";
+            textFrame.style.display = "block";
+            startTimer();
+        });
+
+        bodyifr.addEventListener('input', contagemTmpDigitando);
+
+       
+
+        submitButton.disabled = true;//desabilitao botao para so poder enviar quando os campos estiverem preenchidos
+      
+        nameUser.addEventListener("input", checkInputs);
+
+        bodyifr.addEventListener('input', contaPalavras);
+
+        let qtdPalavras =0;
+        let textHTMLIframe ='';
+        let textHTMLIframeOK ='';
+
+        qtdPalavraElement = document.getElementById('qtdPalavras');
+
+        function contaPalavras(){
+            let lastCharacter = bodyifr.innerText.slice(-1);
+            textHTMLIframe = bodyifr.innerHTML;
+
+            // Verifica se o último caractere inserido é um espaço em branco
+            if (/\s+/.test(lastCharacter)) {
+
+                // Dividir o texto por espaços em branco e quebras de linha
+                qtdPalavras = parseInt(bodyifr.innerText.split(/\s+/).length);
+                console.log(bodyifr.innerText.split(' '))
+                console.log(qtdPalavras)
+                qtdPalavraElement.innerText = qtdPalavras;
+                if(qtdPalavras >= 2000){
+                    bodyifr.innerHTML = textHTMLIframeOK;
+                }else{
+                    textHTMLIframeOK = textHTMLIframe;
+                }
+            }
+        }
+
+        //apagar iframe quando clicado pela primeira vez
+
+        var iframeClicked = false; // Variável para controlar se o iframe foi clicado
+
+        // Adicione um evento de clique ao iframe
+        ifr.addEventListener("click", function() {
+            if (!iframeClicked) {
+                // Verifique se o iframe ainda não foi clicado
+                textFrame.contentDocument.body.innerText = ""; // Apague o conteúdo do iframe
+                iframeClicked = true; // Marque o iframe como clicado
+            }
+        });
+
+        //------------------------------------------------
+
+        function checkInputs() {
+            if (nameUser.value !== "") {
+                submitButton.disabled = false;
+            } else {
+                submitButton.disabled = true;
+            }
+        }
+
+        submitButton.addEventListener("click", function() {
+            
+            var data = {
+                tempoInicio: timerDisplay.textContent,
+                tempoDigitando: timerDisplay2.textContent,
+                user: nameUser.value.hashCode(),
+                codExperimento:codExp.value,
+                peticao: textFrame.contentDocument.body.innerText
+            };
+
+            // var inputElements = document.querySelectorAll("input[type='text']");
+            // for (var i = 0; i < inputElements.length; i++) {
+            //     data.inputs.push(inputElements[i].value);
+            // }
+            console.log(codExp.value)
+            let formSecretoLink = document.getElementById("link-form-sec")
+            if(codExp.value == "1"){
+                console.log("identificou codigo 1")
+                formSecretoLink.style.visibility = "visible";
+            }
+
+            data = [data];
+            var jsonData = JSON.stringify(data);
+            console.log(jsonData); // Aqui você pode fazer algo com os dados salvos, como enviá-los para um servidor
+
+            clearInterval(timerInterval);
+            clearInterval(timerInterval2);
+            inputContainer.style.display = "none";
+            fimPesquisa.style.display = "block"
+            // timerContainer.style.display = "block";
+
+            var xhr = new XMLHttpRequest();
+            var url = "http://54.86.19.201:5002/experimento";
+          
+            var method = "POST";
+            xhr.open(method, url);
+
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.setRequestHeader('Authorization', 'Basic NjQyNzY2NDMzNjg6Z3VnYUAxOTEyNzk=');
+
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status == 200) {
+                    //Comentato apenas para puxar os dados fake
+                    var dadoSaidaJson = JSON.parse(xhr.responseText);
+                    // let dadoSaidaJson = getDadosFake();
+                    console.debug("Dados enviados pelo serviço:", dadoSaidaJson)
+                }
+            }
+
+            xhr.send(jsonData);
+        });
+
+        var timerInterval;
+        var timerInterval2;
+        let primeiraVez = true;
+
+        function startTimer() {
+            var seconds = 0;
+            var minutes = 0;
+            var hours = 0;
+
+            timerInterval = setInterval(function() {
+                seconds++;
+
+                if (seconds === 60) {
+                    seconds = 0;
+                    minutes++;
+
+                    if (minutes === 60) {
+                        minutes = 0;
+                        hours++;
+                    }
+                }
+
+                var displaySeconds = seconds < 10 ? "0" + seconds : seconds;
+                var displayMinutes = minutes < 10 ? "0" + minutes : minutes;
+                var displayHours = hours < 10 ? "0" + hours : hours;
+
+                timerDisplay.textContent = displayHours + ":" + displayMinutes + ":" + displaySeconds;
+            }, 1000);
+        }
+
+        function contagemTmpDigitando(){
+            if(primeiraVez){
+                startTimer2();
+                primeiraVez = false;
+            }
+        }
+
+        function startTimer2() {
+            var seconds = 0;
+            var minutes = 0;
+            var hours = 0;
+
+            timerInterval2 = setInterval(function() {
+                seconds++;
+
+                if (seconds === 60) {
+                    seconds = 0;
+                    minutes++;
+
+                    if (minutes === 60) {
+                        minutes = 0;
+                        hours++;
+                    }
+                }
+
+                var displaySeconds = seconds < 10 ? "0" + seconds : seconds;
+                var displayMinutes = minutes < 10 ? "0" + minutes : minutes;
+                var displayHours = hours < 10 ? "0" + hours : hours;
+
+                timerDisplay2.textContent = displayHours + ":" + displayMinutes + ":" + displaySeconds;
+            }, 1000);
+        }
+
+        String.prototype.hashCode = function() {
+        var hash = 0,
+            i, chr;
+            if (this.length === 0) return hash;
+            for (i = 0; i < this.length; i++) {
+                chr = this.charCodeAt(i);
+                hash = ((hash << 5) - hash) + chr;
+                hash |= 0; // Convert to 32bit integer
+            }
+        return hash;
+        }
+
+        // const str = 'revenue'
+        // console.log(str, str.hashCode())
+    </script>
+</body>
+</html>
+>>>>>>> a73e04b86103b8f9fd7053e6110a7e308826d6b2
