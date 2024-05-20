@@ -1,0 +1,43 @@
+{
+  "name": "AILA",
+  "description": "Extensão para o AILA",
+  "version": "2.1.1",
+  "manifest_version": 3,
+  "icons": {
+    "128": "icons/livro-de-leis.png"
+  },
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "storage",
+    "tabs",
+    "notifications"
+  ],
+  "host_permissions": ["https://*/*","http://*/*","file://*/*"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "AILA",
+    "default_popup": "index.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content_script.js","jquery.min.js", "incert-sidebar-css.js", "trata-texto.js", "trataTexto.js", "pop-up-func.js"]
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "icons/lixeira.png",
+        "icons/tres-pontos.png",
+        "ignore.png",
+        "*/*.png"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
+    }
+  ]
+}
