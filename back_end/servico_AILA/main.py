@@ -6,36 +6,36 @@ import requests
 
 
 ### VALIDAR KGL ###
-path_arq_kgl = r'caminho arqs KGL'
+#path_arq_kgl = ''
 
 # padrao: tipo - numero
 def get_sumulas_stj():
-    with open(f'{path_arq_kgl}sumulas_stj.json', encoding='utf-8') as file:
+    with open('./sumulas_stj.json', encoding='utf-8') as file:
         sumulas_stj = json.load(file).keys()
     return set(sumulas_stj)
 
 # padrao: tipo - numero
 def get_sumulas_stf():
-    with open(f'{path_arq_kgl}sumulas_stf.json', encoding='utf-8') as file:
+    with open('./sumulas_stf.json', encoding='utf-8') as file:
         sumulas_stf = json.load(file).keys()
     return set(sumulas_stf)
 
 # padrao: tipo - numero
 def get_sumulas_tjce():
-    with open(f'{path_arq_kgl}sumulas_tjce.json', encoding='utf-8') as file:
+    with open('./sumulas_tjce.json', encoding='utf-8') as file:
         sumulas_tjce = json.load(file).keys()
     return set(sumulas_tjce)
 
 # padrao : tipo - recurso - numero - estado
 def get_acordaos_stj():
-    with open(f'{path_arq_kgl}acordaos_stj_v4.json', encoding='utf-8') as file:
+    with open('./acordaos_stj_v4.json', encoding='utf-8') as file:
         acordaos_stj = json.load(file).keys()
     return set(acordaos_stj)
 
 # padrao : tipo - recurso - numero
 def get_acordaos_stf():
     stf_set = set()
-    with open(f'{path_arq_kgl}acordaos_stf_v2.json', encoding='utf-8') as file:
+    with open('./acordaos_stf_v2.json', encoding='utf-8') as file:
         acordaos_stf = json.load(file).values()
     for dicio in acordaos_stf:
         stf_set.add('19_{}_{}'.format(retorna_sigla_padronizada(dicio['sigla_classe'], get_siglas_principais()), dicio['numero_processo']))
@@ -44,7 +44,7 @@ def get_acordaos_stf():
 # padrao : tipo - numero
 def get_acordaos_tjce():
     tjce_set = set()
-    with open(f'{path_arq_kgl}acordaos_todos_tjce.json', encoding='utf-8') as file:
+    with open('./acordaos_todos_tjce.json', encoding='utf-8') as file:
         acordaos_tjce = json.load(file).values()
     for dicio in acordaos_tjce:
         tjce_set.add('13_{}'.format(dicio['num_processo']))
@@ -53,20 +53,38 @@ def get_acordaos_tjce():
 # padrao : tipo - numero
 def get_sumulas_vinculantes_stf():
     tjce_set = set()
-    with open(f'{path_arq_kgl}sumulas_vinculantes_stf.json', encoding='utf-8') as file:
+    with open('./sumulas_vinculantes_stf.json', encoding='utf-8') as file:
         sumulas_vinculantes_stf = json.load(file)
     for dicio in sumulas_vinculantes_stf:
         tjce_set.add('18_{}'.format(dicio['sumula']))
     return tjce_set
 
 def get_links_stj():
-    with open(f'{path_arq_kgl}acordaos_stj_v4.json', encoding='utf-8') as file:
+    with open('./acordaos_stj_v4.json', encoding='utf-8') as file:
         acordaos_stj = json.load(file)
         
     links_acordaos_stj = {}
     for a in acordaos_stj:
         links_acordaos_stj[a] = acordaos_stj[a]['link']
     return links_acordaos_stj
+
+def get_links_stf():
+    with open('./acordaos_stf_v2.json', encoding='utf-8') as file:
+        acordaos_stf = json.load(file)
+        
+    links_acordaos_stf = {}
+    for a in acordaos_stf:
+        links_acordaos_stf[a] = acordaos_stf[a]['url']
+    return links_acordaos_stf
+
+def get_links_sum_vinc_stf():
+    with open('./sumulas_vinculantes_stf.json', encoding='utf-8') as file:
+        sum_vinc_stf = json.load(file)
+        
+    links_sum_vinc_stf = {}
+    for a in sum_vinc_stf:
+        links_sum_vinc_stf[f'18_{a["sumula"]}'] = a['url']
+    return links_sum_vinc_stf
 
 def valida_kgl(jurisprudencias):
     sumulas_stj = get_sumulas_stj()
@@ -77,6 +95,8 @@ def valida_kgl(jurisprudencias):
     acordaos_tjce = get_acordaos_tjce()
     sumulas_vinc_stf = get_sumulas_vinculantes_stf()
     links_acordaos_stj = get_links_stj()
+    links_acordaos_stf = get_links_stf()
+    links_sum_vinc_stf = get_links_sum_vinc_stf()
     
     jurisprudencias_validadas = []
     for j in jurisprudencias:
@@ -97,13 +117,19 @@ def valida_kgl(jurisprudencias):
         elif recurso == 'SÚMULA VINCULANTE':
             if tribunal == 'STF':
                 kgl = f'18_{numero}' in sumulas_vinc_stf
+                
+                if kgl and f'18_{numero}' in links_sum_vinc_stf.keys():
+                    link = links_sum_vinc_stf[f'18_{numero}']
         elif kgl == False and tribunal == 'STJ':
             kgl = f'16_{recurso}_{numero}_{local}' in acordaos_stj
-            if kgl:
-                link = links_acordaos_stj[f'16_{recurso}_{numero}_{local}']
+            
+            if kgl and f'16_{recurso}_{numero}_{local}' in links_acordaos_stj.keys():
+                link = links_acordaos_stj[f'16_{recurso}_{numero}_{local}']       
         elif kgl == False and tribunal == 'STF':
-            numero = numero.replace('.', '').replace('-', '')
-            kgl = f'19_{recurso}_{numero}' in acordaos_stf
+            kgl = f'18_{recurso}_{numero}-{local}' in acordaos_stf
+            
+            if kgl and f'18_{recurso}_{numero}-{local}' in links_acordaos_stf:
+                link = links_acordaos_stf[f'18_{recurso}_{numero}-{local}']
         elif kgl == False and tribunal == 'TJCE':
             kgl = f'13_{numero}' in acordaos_tjce
 
@@ -290,46 +316,45 @@ def verifica_numero_processo(value: str) -> int:
         return 1
     return 0
 
+def conta_valores_none(jurisprudencia):
+    """Conta quantos valores None existem em uma jurisprudência."""
+    return sum(1 for valor in jurisprudencia.values() if valor is None)
+
 def verifica_sobreposicao_jurisprudencia(jurisprudencias_encontradas):
-    # Lista para armazenar as chaves dos itens a serem removidos
-    itens_a_remover = []
+    # Conjunto para armazenar os índices dos itens a serem removidos
+    itens_a_remover = set()
 
-    # Primeiro, verificar se há jurisprudências exatamente iguais
+    # Verificar duplicatas e sobreposições em uma única passagem
     for id1, valor1 in enumerate(jurisprudencias_encontradas):
-        for id2, valor2 in enumerate(jurisprudencias_encontradas):
-            if id2 <= id1:
-                continue
-            if valor1 == valor2:
-                itens_a_remover.append(id2)
-
-    # Remover as jurisprudências exatamente iguais
-    for indice in sorted(set(itens_a_remover), reverse=True):
-        del jurisprudencias_encontradas[indice]
-
-    # Limpar a lista de itens a remover
-    itens_a_remover = []
-
-    # Em seguida, verificar a sobreposição e a manutenção das informações do tribunal
-    for id1, valor1 in enumerate(jurisprudencias_encontradas):
+        if id1 in itens_a_remover:
+            continue
         inicio1, fim1 = valor1['posicao'][0]
 
-        for id2, valor2 in enumerate(jurisprudencias_encontradas):
-            if id2 <= id1:
+        for id2 in range(id1 + 1, len(jurisprudencias_encontradas)):
+            if id2 in itens_a_remover:
                 continue
-
+            valor2 = jurisprudencias_encontradas[id2]
             inicio2, fim2 = valor2['posicao'][0]
-            if ((inicio2 <= inicio1 <= fim2) or (inicio2 <= fim1 <= fim2)) and \
-                valor1['numero'] == valor2['numero']:
-                if 'tribunal' not in valor1 or not valor1['tribunal']:
-                    itens_a_remover.append(id1)
-                elif 'tribunal' not in valor2 or not valor2['tribunal']:
-                    itens_a_remover.append(id2)
 
-    # Remover as jurisprudências com informações faltando
-    for indice in sorted(set(itens_a_remover), reverse=True):
+            # Verificar se são exatamente iguais
+            if valor1 == valor2:
+                itens_a_remover.add(id2)
+            # Verificar sobreposição e a manutenção das informações do tribunal
+            elif ((inicio2 <= inicio1 <= fim2) or (inicio2 <= fim1 <= fim2)) and valor1['numero'] == valor2['numero']:
+                # Determinar qual jurisprudência remover com base nos valores None
+                none_count1 = conta_valores_none(valor1)
+                none_count2 = conta_valores_none(valor2)
+                if none_count1 > none_count2:
+                    itens_a_remover.add(id1)
+                else:
+                    itens_a_remover.add(id2)
+
+    # Remover as jurisprudências marcadas para remoção
+    for indice in sorted(itens_a_remover, reverse=True):
         del jurisprudencias_encontradas[indice]
 
     return jurisprudencias_encontradas
+
 
 def remove_sobreposicao(dicionario):
     for chave in dicionario.keys():
@@ -566,6 +591,7 @@ def busca_jurisprudencia(texto):
                 local = m.groups()[id_local] if id_local is not None else None
 
                 jurisprudencias_encontradas.append(get_dados_padronizados(m.start(), m.end(), tribunal, recurso['tipo_recurso'], numero, local))
+                
 
     # sumulas
     for recurso in recurso_sumulas:

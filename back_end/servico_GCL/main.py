@@ -1,14 +1,10 @@
 import re
-from datetime import date
+import json
 from roman import toRoman, fromRoman, InvalidRomanNumeralError
-from pickle import load
 from unicodedata import normalize
 
 # Necessário, se não bug. param: Legis_Class = Arquivo .py com a classe Legis. script.py não funciona.
 from Entities.Legislacao import Legislacao
-
-ARQUIVO_DIC = r'caminho-dic'
-
 
 def artigo_tree(texto_legis, artigo, arg_artigo, paragrafo, inciso, alinea, item):
     """Função que segue a estrutura do Artigo."""
@@ -426,10 +422,8 @@ def consulta_texto_lei(arquivo_dic, legislacao):
 
     return lista_dict_results
 
-
-fp = open(ARQUIVO_DIC, 'rb')
-dic_leis = load(fp)
-fp.close()
+with open('./legislacoes.json', encoding='utf-8') as file:
+    dic_leis = json.load(file)
 
 #legislacao = (11, "100", date(2019, 6, 26), "1", "0", "0", "iii", "0", "0")
 

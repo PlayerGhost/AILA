@@ -77,11 +77,7 @@ app.run(host='0.0.0.0', port=5000)
 
 # http://localhost:5000/?tipo=0&lei=10.406&ano=2002&artigo=49&complemento=A
 
-<<<<<<< HEAD
 # http://localhost:5000/?tipo=0&lei=8.078&data=1990-09-11&artigo=81&complemento=0&paragrafo=unico&inciso=III
-=======
-# http://localhost:5000/?tipo=0&lei=8.078&data=11/09/1990&artigo=81&complemento=0&paragrafo=unico&inciso=III
->>>>>>> a73e04b86103b8f9fd7053e6110a7e308826d6b2
 
 # http://localhost:5000/?tipo=0&lei=10.406&ano=2002&artigo=44&complemento=0&paragrafo=2&inciso=0&alinea=0&item=0
 
