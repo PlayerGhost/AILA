@@ -1,3 +1,11 @@
+legislacoes.json
+acordaos_stf_v2.json
+acordaos_stj_v4.json
+acordaos_todos_tjce.json
+sumulas_stf.json
+sumulas_stj.json
+sumulas_tjce.json
+sumulas_vinculantes_stf.json
 back_end/.venv/
 back_end/servico_GCL/__pycache__/
 back_end/servico_GCL/nohup.out
