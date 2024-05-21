@@ -20,7 +20,7 @@
 
 ## Estrutura de Entrada do AILA:
 
-'''python
+```python
 
 data = {
     "mensagem": {
@@ -28,7 +28,7 @@ data = {
         "conteudo": 'LEI n° 9.455, 1997. STJ RECURSO ESPECIAL 1.266.666 SP'
     }
 }
-'''
+```
 
 ## Estrutura de Saída do AILA:
 Após executar o `main.py` com o seu texto, a função retornará um dicionário com a seguinte estrutura:
