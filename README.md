@@ -58,8 +58,7 @@ Juiz Relator
 RELATÓRIO E VOTO
 
 Trata-se de Ação Anulatória De Contrato C/C Repetição De Indébito C/C Reparação De Danos Morais proposta por ALCIDES FERNANDES DA SILVA em face de BANCO BMG SA.
- Alega o autor, à exordial de Id. 1630928, que estavam sendo descontados de seu benefício previdenciário pela instituição financeira demandada valores decorrentes de dois contratos de empréstimos consignados, o de nº 214100265, no valor de R$ 2.251,73 (dois mil duzentos e cinquenta e um reais e setenta e três centavos) a ser quitado em 60 parcelas mensais de R$ 71,47 (setenta e um reais e quarenta e sete centavos) e o de nº 229525632, no valor de R$ 498,79 (quatrocentos e noventa e oito reais e setenta e nove centavos) a ser quitado em 58 parcelas mensais de R$ 16,46 (dezesseis reais e quarenta e seis centavos). Sustenta que nunca realizou tais contratações e que se tratam de empréstimos fraudulentos. Aduz ainda, que tal situação gerou abalo a direitos da personalidade. Pede, ao final, a declaração de inexistência do débito, a devolução dos valores descontados em dobro e indenização por danos morais no importe de R$ 20.000,00 (vinte mil reais).
-Em sede de Contestação (Id. 1630940), o réu impugna o valor da causa e defende sua ilegitimidade a figurar no polo passivo da ação. Alude que o contrato objeto da presente demanda pertence ao BANCO ITAU BMG CONSIGNADO, empresa com personalidade jurídica diversa e independente do Banco BMG. Defende a inexistência de dano moral no caso em comento. Por fim, pugna pelo reconhecimento da ilegitimidade processual do BANCO BMG S/A e a condenação da demandada ao reembolso das despesas e pagamento dos honorários ao procurador do réu.
+ Alega o autor, à exordial de Id. 1630928, que estavam sendo descontados de seu benefício previdenciário pela instituição financeira demandada valores decorrentes de dois contratos de empréstimos consignados, o de nº 214100265, no valor de R$ 2.251,73 (dois mil duzentos e cinquenta e um reais e setenta e três centavos) a ser quitado em 60 parcelas mensais de R$ 71,47 (setenta e um reais e quarenta e sete centavos) e o de nº 229525632, no valor de R$ 498,79 (quatrocentos e noventa e oito reais e setenta e nove centavos) a ser quitado em 58 parcelas mensais de R$ 16,46 (dezesseis reais e quarenta e seis centavos). Sustenta que nunca realizou tais contratações e que se tratam de empréstimoertence ao BANCO ITAU BMG CONSIGNADO, empresa com personalidade jurídica diversa e independente do Banco BMG. Defende a inexistência de dano moral no caso em comento. Por fim, pugna pelo reconhecimento da ilegitimidade processual do BANCO BMG S/A e a condenação da demandada ao reembolso das despesas e pagamento dos honorários ao procurador do réu.
 Apesar de devidamente intimada, a requerente não apresentou réplica a contestação, conforme certidão constante no Id. 1630954.
 Sobreveio sentença de primeiro grau (Id. 1630955), na qual o juízo sentenciante verificou que o promovente propôs outras ações para desconstituição de empréstimo consignado, dentre elas a de nº 3000870-09.2018.8.06.0167, em que o banco Itaú Consignado juntou os contratos objeto das consignações celebradas com o autor, inclusive aquelas questionadas nestes autos. Verificou que os contratos de nº 214100265 e de nº 229525632, celebrados com BMG, foram amortizados pelos novos contratos celebrados com o Itaú Consignado, conforme demonstrou o Itaú nos autos do processo nº 3000870-09.2018.8.06.0167, nos Id. 1719927 e Id. 1719929. Reluz o juiz de base que não verificou verossimilhança nas alegações do autor, inclusive levando em consideração o enorme lapso temporal entre as contratações e o ajuizamento das ações. Em decorrência, julgou improcedente a ação e condenou o autor em multa por litigância de má-fé no valor equivalente a 2% (dois por cento) sobre o valor da causa, por alteração da verdade dos fatos e por utilizar-se do processo para conseguir objetivo ilegal.
 Irresignado, o autor interpôs Recurso Inominado (Id. 1630960) asseverando que não agiu com má-fé, pois o autor, por não possuir estudos e por não entender toda a confusão bancária produzida pelas entidades, buscou o judiciário no presente caso, e em todos os outros, porque, mesmo tendo feito empréstimos, os valores e as instituições não correspondiam com o que o mesmo havia contratado, e que, para um leigo no assunto e com pouca instrução, é de difícil entendimento. Pede o afastamento da multa por litigância de má-fé e indenização por danos morais sob o fundamento de as instituições bancárias não terem cumprido com o dever de informação.
@@ -83,6 +82,128 @@ Para a condenação em litigância de má-fé, faz-se necessário o preenchiment
 ## Estrutura de Saída do AILA:
 Após executar o `main.py` com o seu texto, a função retornará um dicionário com a seguinte estrutura:
 
-```python
-{"extensao": {"artigos_e_dispositivos": [{"jurisprudencias": {}, "marcador": "CPC", "posicao": [[2196, 2199], [8901, 8904], [9548, 9551], [10804, 10807]], "sugestoes": ["Institui o Código de Processo Civil."], "tipo": "consulta_dispositivo"}, {"marcador": "art. 98, §3º", "posicao": [2180, 2192], "sugestoes": [], "tipo": "erro_legislacao"}, {"marcador": "art. 17", "posicao": [8890, 8897], "sugestoes": ["Art. 17"], "tipo": "sugestao_artigo"}, {"marcador": "art. 80, do", "posicao": [9536, 9547], "sugestoes": [], "tipo": "erro_legislacao"}, {"marcador": "art. 98, §3º", "posicao": [10788, 10800], "sugestoes": [], "tipo": "erro_legislacao"}, {"jurisprudencias": {}, "marcador": "CF", "posicao": [[8972, 8974]], "sugestoes": ["Constituição da República Federativa do Brasil."], "tipo": "consulta_dispositivo"}, {"marcador": "art. 5º, LV", "posicao": [8976, 8987], "sugestoes": ["Art. 5°, LV"], "tipo": "sugestao_artigo"}, {"jurisprudencias": {}, "marcador": "Código de Processo Civil", "posicao": [[9080, 9104]], "sugestoes": ["Institui o Código de Processo Civil."], "tipo": "consulta_dispositivo"}, {"jurisprudencias": {}, "marcador": "Código Civil", "posicao": [[10316, 10328]], "sugestoes": ["Institui o Código Civil."], "tipo": "consulta_dispositivo"}, {"marcador": "artigo 104, do", "posicao": [10301, 10315], "sugestoes": [], "tipo": "erro_legislacao"}, {"jurisprudencias": {}, "marcador": "Código de Defesa do Consumidor", "posicao": [[6821, 6851]], "sugestoes": ["Dispõe sobre a proteção do consumidor e dá outras providências.Texto compilado"], "tipo": "consulta_dispositivo"}, {"marcador": "Lei 9.099/95", "posicao": [[2124, 2136], [10732, 10744]], "sugestoes": ["Lei n° 9.099/1995"], "tipo": "sugestao_dispositivo"}, {"marcador": "art. 55, L", "posicao": [2115, 2125], "sugestoes": [], "tipo": "erro_legislacao"}, {"marcador": "art. 55, L", "posicao": [10723, 10733], "sugestoes": [], "tipo": "erro_legislacao"}, {"marcador": "ART. 80, INCISO II", "posicao": [1459, 1477], "sugestoes": [], "tipo": "erro_pareamento"}, {"marcador": "Art. 80", "posicao": [9634, 9641], "sugestoes": [], "tipo": "erro_pareamento"}], "jurisprudencias_texto": [{"KGL": false, "link": null, "local": "RS", "numero": "76.234", "posicao": [[9450, 9471]], "tipo_recurso": "RECURSO ESPECIAL", "tribunal": "STJ"}]}}}
-```
+```json
+{
+  "extensao": {
+    "artigos_e_dispositivos": [
+      {
+        "jurisprudencias": {},
+        "marcador": "CPC",
+        "posicao": [
+          [2196, 2199],
+          [8901, 8904],
+          [9548, 9551],
+          [10804, 10807]
+        ],
+        "sugestoes": ["Institui o Código de Processo Civil."],
+        "tipo": "consulta_dispositivo"
+      },
+      {
+        "marcador": "art. 98, §3º",
+        "posicao": [2180, 2192],
+        "sugestoes": [],
+        "tipo": "erro_legislacao"
+      },
+      {
+        "marcador": "art. 17",
+        "posicao": [8890, 8897],
+        "sugestoes": ["Art. 17"],
+        "tipo": "sugestao_artigo"
+      },
+      {
+        "marcador": "art. 80, do",
+        "posicao": [9536, 9547],
+        "sugestoes": [],
+        "tipo": "erro_legislacao"
+      },
+      {
+        "marcador": "art. 98, §3º",
+        "posicao": [10788, 10800],
+        "sugestoes": [],
+        "tipo": "erro_legislacao"
+      },
+      {
+        "jurisprudencias": {},
+        "marcador": "CF",
+        "posicao": [[8972, 8974]],
+        "sugestoes": ["Constituição da República Federativa do Brasil."],
+        "tipo": "consulta_dispositivo"
+      },
+      {
+        "marcador": "art. 5º, LV",
+        "posicao": [8976, 8987],
+        "sugestoes": ["Art. 5°, LV"],
+        "tipo": "sugestao_artigo"
+      },
+      {
+        "jurisprudencias": {},
+        "marcador": "Código de Processo Civil",
+        "posicao": [[9080, 9104]],
+        "sugestoes": ["Institui o Código de Processo Civil."],
+        "tipo": "consulta_dispositivo"
+      },
+      {
+        "jurisprudencias": {},
+        "marcador": "Código Civil",
+        "posicao": [[10316, 10328]],
+        "sugestoes": ["Institui o Código Civil."],
+        "tipo": "consulta_dispositivo"
+      },
+      {
+        "marcador": "artigo 104, do",
+        "posicao": [10301, 10315],
+        "sugestoes": [],
+        "tipo": "erro_legislacao"
+      },
+      {
+        "jurisprudencias": {},
+        "marcador": "Código de Defesa do Consumidor",
+        "posicao": [[6821, 6851]],
+        "sugestoes": ["Dispõe sobre a proteção do consumidor e dá outras providências.Texto compilado"],
+        "tipo": "consulta_dispositivo"
+      },
+      {
+        "marcador": "Lei 9.099/95",
+        "posicao": [[2124, 2136], [10732, 10744]],
+        "sugestoes": ["Lei n° 9.099/1995"],
+        "tipo": "sugestao_dispositivo"
+      },
+      {
+        "marcador": "art. 55, L",
+        "posicao": [2115, 2125],
+        "sugestoes": [],
+        "tipo": "erro_legislacao"
+      },
+      {
+        "marcador": "art. 55, L",
+        "posicao": [10723, 10733],
+        "sugestoes": [],
+        "tipo": "erro_legislacao"
+      },
+      {
+        "marcador": "ART. 80, INCISO II",
+        "posicao": [1459, 1477],
+        "sugestoes": [],
+        "tipo": "erro_pareamento"
+      },
+      {
+        "marcador": "Art. 80",
+        "posicao": [9634, 9641],
+        "sugestoes": [],
+        "tipo": "erro_pareamento"
+      }
+    ],
+    "jurisprudencias_texto": [
+      {
+        "KGL": false,
+        "link": null,
+        "local": "RS",
+        "numero": "76.234",
+        "posicao": [[9450, 9471]],
+        "tipo_recurso": "RECURSO ESPECIAL",
+        "tribunal": "STJ"
+      }
+    ]
+  }
+}
+
