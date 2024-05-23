@@ -44,17 +44,11 @@
                         LITIGÂNCIA DE MÁ-FÉ. ALTERAÇÃO DA VERDADE DOS FATOS. HIPÓTESE PREVISTA NO ART. 80, INCISO II, DO CPCB. MANUTENÇÃO DA MULTA DE 2% (DOIS POR CENTO),                           POR LITIGÂNCIA DE MÁ-FÉ APLICADA NO PRIMEIRO GRAU. RECURSO INOMINADO CONHECIDO E IMPROVIDO. SENTENÇA DE ORIGEM MANTIDA POR SEUS PRÓPRIOS E JURÍDICOS                         FUNDAMENTOS.
                     ACÓRDÃO
                         Os membros da Primeira Turma Recursal dos Juizados Especiais Cíveis e Criminais do Estado do Ceará, por unanimidade de votos, e nos termos da                                 manifestação do Juiz relator, acordam em CONHECER E NEGAR PROVIMENTO ao recurso inominado - RI, mantendo-se a sentença vergastada.
-                        
-                        Condeno a parte recorrente vencida a pagar custas e honorários advocatícios em 20% (vinte por cento) do valor atualizado da causa (art. 55, Lei                              9.099/95), com a exigibilidade suspensa na forma do art. 98, §3º do CPC.
-                        
+                    Condeno a parte recorrente vencida a pagar custas e honorários advocatícios em 20% (vinte por cento) do valor atualizado da causa (art. 55, Lei                              9.099/95), com a exigibilidade suspensa na forma do art. 98, §3º do CPC.
                     Fortaleza, CE., 21 de julho de 2020.
-                    
                     Bel. Irandes Bastos Sales
-                    
                     Juiz Relator
-                    
                     RELATÓRIO E VOTO
-                    
                     Trata-se de Ação Anulatória De Contrato C/C Repetição De Indébito C/C Reparação De Danos Morais proposta por ALCIDES FERNANDES DA SILVA em face de BANCO                     BMG SA.
                     Alega o autor, à exordial de Id. 1630928, que estavam sendo descontados de seu benefício previdenciário pela instituição financeira demandada valores                         decorrentes de dois contratos de empréstimos consignados, o de nº 214100265, no valor de R$ 2.251,73 (dois mil duzentos e cinquenta e um reais e                             setenta e três centavos) a ser quitado em 60 parcelas mensais de R$ 71,47 (setenta e um reais e quarenta e sete centavos) e o de nº 229525632, no valor                      de R$ 498,79 (quatrocentos e noventa e oito reais e setenta e nove centavos) a ser quitado em 58 parcelas mensais de R$ 16,46 (dezesseis reais e                             quarenta e seis centavos). Sustenta que nunca realizou tais contratações e que se tratam de empréstimoertence ao BANCO ITAU BMG CONSIGNADO, empresa com                      personalidade jurídica diversa e independente do Banco BMG. Defende a inexistência de dano moral no caso em comento. Por fim, pugna pelo reconhecimento                     da ilegitimidade processual do BANCO BMG S/A e a condenação da demandada ao reembolso das despesas e pagamento dos honorários ao procurador do réu.
                     Apesar de devidamente intimada, a requerente não apresentou réplica a contestação, conforme certidão constante no Id. 1630954.
