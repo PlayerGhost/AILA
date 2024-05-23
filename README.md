@@ -24,7 +24,6 @@
 
 data = {
     "mensagem": {
-        # conteudo para ser avaliado!
         "conteudo": "ESTADO DO CEARÁ
 PODER JUDICIÁRIO
  TRIBUNAL DE JUSTIÇA
