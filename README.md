@@ -18,11 +18,12 @@
     - Em seguida, abra outro terminal e execute o `app.py` na pasta `back_end/servicos_AILA`.
     - Feito isso, vá para o arquivo `main.py` na raiz do programa, insira seus textos e execute!
 
-## Estrutura de Entrada do AILA:
+## Exemplo de Entrada do AILA:
 
 {
     "mensagem": {
-        "conteudo": ESTADO DO CEARÁ
+        "conteudo": 
+                    "ESTADO DO CEARÁ
                     PODER JUDICIÁRIO
                     TRIBUNAL DE JUSTIÇA
                     FÓRUM DAS TURMAS RECURSAIS PROF. DOLOR BARREIRA
@@ -69,7 +70,7 @@
                     Para a condenação em litigância de má-fé, faz-se necessário o preenchimento de três requisitos, quais sejam: que a conduta da parte se subsuma a uma das                     hipóteses elencadas no art. 17 do CPC (antigo)."
 
 
-## Estrutura de Saída do AILA:
+## Exemplo de Saída do AILA:
 Após executar o `main.py` com o seu texto, a função retornará um dicionário com a seguinte estrutura:
 
 ```json
