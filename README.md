@@ -20,7 +20,7 @@
 
 ## Estrutura de Entrada do AILA:
 
-```python
+```json
 
 data = {
     "mensagem": {
