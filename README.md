@@ -2,8 +2,8 @@
 
 ## Como Utilizar:
 1. **Instalando os pacotes necessários (parte do back-end):**
-    - Certifique-se de ter os seguintes módulos instalados: `request`, `flask`, `flask-cors` e `roman`.
-    - Você pode usar o seguinte comando para instalá-los: `pip install request flask flask-cors roman`.
+    - Certifique-se de ter os seguintes módulos instalados: `requests`, `flask`, `flask-cors` e `roman`, `anytree`.
+    - Você pode usar o seguinte comando para instalá-los: `pip install requests flask flask-cors roman anytree`.
 
 2. **Baixando os arquivos necessários:**
     - **Parte 1:**
