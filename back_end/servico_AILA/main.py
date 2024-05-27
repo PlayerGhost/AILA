@@ -5,9 +5,6 @@ import requests
 #from datetime import date
 
 
-### VALIDAR KGL ###
-#path_arq_kgl = ''
-
 # padrao: tipo - numero
 def get_sumulas_stj():
     with open('./sumulas_stj.json', encoding='utf-8') as file:
@@ -16,7 +13,7 @@ def get_sumulas_stj():
 
 # padrao: tipo - numero
 def get_sumulas_stf():
-    with open('./sumulas_stf.json', encoding='utf-8') as file:
+    with open('./sumulas_stf_v2.json', encoding='utf-8') as file:
         sumulas_stf = json.load(file).keys()
     return set(sumulas_stf)
 
@@ -36,10 +33,8 @@ def get_acordaos_stj():
 def get_acordaos_stf():
     stf_set = set()
     with open('./acordaos_stf_v2.json', encoding='utf-8') as file:
-        acordaos_stf = json.load(file).values()
-    for dicio in acordaos_stf:
-        stf_set.add('19_{}_{}'.format(retorna_sigla_padronizada(dicio['sigla_classe'], get_siglas_principais()), dicio['numero_processo']))
-    return stf_set
+        acordaos_stf = json.load(file).keys()
+    return set(acordaos_stf)    
 
 # padrao : tipo - numero
 def get_acordaos_tjce():
@@ -86,17 +81,28 @@ def get_links_sum_vinc_stf():
         links_sum_vinc_stf[f'18_{a["sumula"]}'] = a['url']
     return links_sum_vinc_stf
 
+def get_links_sum_stf():
+    with open('./acordaos_stf_v2.json', encoding='utf-8') as file:
+        acordaos_stf = json.load(file)
+        
+    links_acordaos_stf = {}
+    for a in acordaos_stf:
+        links_acordaos_stf[a] = acordaos_stf[a]['url']
+    return links_acordaos_stf
+
+sumulas_stj = get_sumulas_stj()
+sumulas_stf = get_sumulas_stf()
+sumulas_tjce = get_sumulas_tjce()
+acordaos_stj = get_acordaos_stj()
+acordaos_stf = get_acordaos_stf()
+acordaos_tjce = get_acordaos_tjce()
+sumulas_vinc_stf = get_sumulas_vinculantes_stf()
+links_acordaos_stj = get_links_stj()
+links_acordaos_stf = get_links_stf()
+links_sum_vinc_stf = get_links_sum_vinc_stf()
+links_sum_stf = get_links_sum_stf()
+
 def valida_kgl(jurisprudencias):
-    sumulas_stj = get_sumulas_stj()
-    sumulas_stf = get_sumulas_stf()
-    sumulas_tjce = get_sumulas_tjce()
-    acordaos_stj = get_acordaos_stj()
-    acordaos_stf = get_acordaos_stf()
-    acordaos_tjce = get_acordaos_tjce()
-    sumulas_vinc_stf = get_sumulas_vinculantes_stf()
-    links_acordaos_stj = get_links_stj()
-    links_acordaos_stf = get_links_stf()
-    links_sum_vinc_stf = get_links_sum_vinc_stf()
     
     jurisprudencias_validadas = []
     for j in jurisprudencias:
@@ -112,6 +118,8 @@ def valida_kgl(jurisprudencias):
                 kgl = f'14_{numero}' in sumulas_stj
             elif kgl == False and tribunal == 'STF':
                 kgl = f'17_{numero}' in sumulas_stf
+                if kgl and f'17_{numero}' in links_sum_stf.keys():
+                    link = links_sum_stf[f'17_{numero}']
             elif kgl == False and tribunal == 'TJCE':
                 kgl = f'15_{numero}' in sumulas_tjce
         elif recurso == 'SÚMULA VINCULANTE':
@@ -313,8 +321,8 @@ def verifica_numero_processo(value: str) -> int:
 
     numero = ''.join(caractere for caractere in value if caractere.isnumeric())
     if re.search(expression, numero):
-        return 1
-    return 0
+        return True
+    return False
 
 def conta_valores_none(jurisprudencia):
     """Conta quantos valores None existem em uma jurisprudência."""
@@ -397,8 +405,8 @@ def get_dados_padronizados(pos_inicio, pos_fim, tribunal, tipo_recurso, numero, 
             tribunal = tribunal[:2] + tribunal[-2:]
 
 
-    numero = numero.replace('\n', '')
-    if not verifica_numero_processo(numero):
+    numero = numero.replace('\n', '') if numero is not None else None
+    if numero is not None and not verifica_numero_processo(numero):
         numero = bota_ponto_milhar(numero)
 
     if tribunal is None:
@@ -498,36 +506,36 @@ def verifica_siglas(grupos, texto, siglas_principais, siglas_acessorias, conecti
 
     return padroniza_nomeclatura_jurisprudencia(acessorias, conectivos_encontrados, grupo_principais, (grupos.start("principais"), grupos.end("principais"))), grupos.group()
 
+siglas_principais = get_siglas_principais()
+siglas_acessorias = get_siglas_acessorias()
+conectivos = get_conectivos()
+estados = get_estados_brasileiros()[1]
+tribunais_superiores = get_tribunais_federais()
+tribunais_estaduais = get_tribunais_estaduais()
+tribunais = tribunais_superiores + tribunais_estaduais
 
-def busca_jurisprudencia(texto):
-    siglas_principais = get_siglas_principais()
-    siglas_acessorias = get_siglas_acessorias()
-    conectivos = get_conectivos()
-    estados = get_estados_brasileiros()[1]
-    tribunais_superiores = get_tribunais_federais()
-    tribunais_estaduais = get_tribunais_estaduais()
-    tribunais = tribunais_superiores + tribunais_estaduais
+padrao_acessorias = "|".join(f"(?P<acessorias_{index}>{sigla}|{'|'.join(siglas_acessorias[sigla])})" for index, sigla in enumerate(siglas_acessorias))
+padrao_principais = "|".join(f"({chave}|{'|'.join(siglas_principais[chave])})" for chave in siglas_principais)
+padrao_conectivos = "|".join(f"(?P<conectivos_{i}>{conectivo})" for i, conectivo in enumerate(conectivos))
 
-    padrao_acessorias = "|".join(f"(?P<acessorias_{index}>{sigla}|{'|'.join(siglas_acessorias[sigla])})" for index, sigla in enumerate(siglas_acessorias))
-    padrao_principais = "|".join(f"({chave}|{'|'.join(siglas_principais[chave])})" for chave in siglas_principais)
-    padrao_conectivos = "|".join(f"(?P<conectivos_{i}>{conectivo})" for i, conectivo in enumerate(conectivos))
-
-    regex = (
+regex = (
             f"("
             f"( {padrao_acessorias}) ({padrao_conectivos}) "
             f")*"
             f"(?P<principais>{padrao_principais})\\b"
             )
 
-    w = r'[A-Za-zÀ-ÄÇ-ÏÒ-ÖÙ-Üà-äç-ïò-öù-ü]'
-    bl = r'(?:(?<!{})(?={}))'.format(w, w)
-    br = r'(?:(?<={})(?!{}))'.format(w, w)
-    padrao_numero = r'(\d[\d\.\n\-/]*\d)'
-    padrao_local = r'({})'.format("|".join(map(re.escape, estados)))
-    padrao_tribunal_superior = r'({})'.format("|".join(map(re.escape, tribunais_superiores)))
-    padrao_tribunal_estadual = r'({})'.format("|".join(tribunais_estaduais))
-    sep = r'\D{0,9}'
-    sep_curto = r'\D{0,5}'
+w = r'[A-Za-zÀ-ÄÇ-ÏÒ-ÖÙ-Üà-äç-ïò-öù-ü]'
+bl = r'(?:(?<!{})(?={}))'.format(w, w)
+br = r'(?:(?<={})(?!{}))'.format(w, w)
+padrao_numero = r'(\d[\d\.\n\-/]*\d)'
+padrao_local = r'({})'.format("|".join(map(re.escape, estados)))
+padrao_tribunal_superior = r'({})'.format("|".join(map(re.escape, tribunais_superiores)))
+padrao_tribunal_estadual = r'({})'.format("|".join(tribunais_estaduais))
+sep = r'\D{0,9}'
+sep_curto = r'\D{0,5}'
+
+def busca_jurisprudencia(texto):
 
     jurisprudencias_encontradas = []
 
@@ -1035,20 +1043,28 @@ def ConsultaDispositivo(legislacao):
     alinea = None
     item = None
     
+    #TODO : reestruturar essa parte pois algumas palavras podem conter acentos.
+
     dicionario_tipo = {'lei': 0,
                        'decreto': 1,
                        'lei complementar': 2,
                        'decreto-lei': 3,
                        'lei delegada': 4,
-                       'medida provisória AE32': 5,
+                       'medida provisoria AE32': 5,
                        'medida provisoria PE32': 6,
                        'constituição': 7,
                        'decreto legislativo': 8,
                        'lei estadual': 9,
                        'lei complementar estadual': 10,
-                       'emenda constitucional': 11}
+                       'emenda constitucional': 11,
+                       'medida provisoria' : 12}
     
-    idx_tipo = dicionario_tipo[tipo.lower()]
+    try:
+        idx_tipo = dicionario_tipo[tipo.lower()]
+    except KeyError:
+        print("A chave '{}' não foi encontrada no dicionário.".format(tipo))
+        idx_tipo = -1
+        # Execute um código alternativo aqui ou trate a exceção de outra forma
     
     data = data if data else 0
     artigo = artigo if artigo else '0'
@@ -1059,7 +1075,7 @@ def ConsultaDispositivo(legislacao):
     item = item if item else '0'
     
     url = 'http://localhost:5000/?'
-    url += 'tipo={}&'.format(idx_tipo)
+    url += 'tipo={}&'.format(idx_tipo if idx_tipo is not None else -1)
     url += 'lei={}&'.format(numero)
     url += 'ano={}&'.format(data)
     url += 'artigo={}&'.format(artigo)
@@ -1188,9 +1204,10 @@ def AILA(texto):
                                                                                     s[2].split('_')[1],
                                                                                     s[2].split('_')[2].split('-')[0]))
             
-            if len(sugestoes_dispositivos) == 1:
-                sugestao_dispositivo = sugestoes_dispositivos[0]
-                sugestao_padronizada_dispositivo = sugestoes_padronizadas_dispositivos[0]
+            if len(sugestoes_dispositivos) == 1 and len(sugestoes_padronizadas_dispositivos) == 1:
+                sugestao_dispositivo = sugestoes_dispositivos[0] if len(sugestoes_dispositivos) > 0 else None
+                
+                sugestao_padronizada_dispositivo = sugestoes_padronizadas_dispositivos[0] if len(sugestoes_padronizadas_dispositivos) > 0 else None
                 
              
                 if texto_bruto_dispositivo == sugestao_padronizada_dispositivo:
@@ -1219,11 +1236,12 @@ def AILA(texto):
                     if len(sugestoes_artigos) == 1:
                         
                         sugestao_artigo = sugestoes_artigos[0]
+                        sugestao_padronizada_artigo = ''
                         jurisprudencias = sugestao_artigo['jurisprudencias']
                         
                         # sugestao_artigo['artigo'] = (art, com, par, inc, ali, ite)
                         
-                        if sugestao_artigo['flag_indireta'] == 0:
+                        if sugestao_artigo['flag_indireta'] == 0 and len(sugestao_artigo['artigo']) > 0 and sugestao_padronizada_artigo is not None:
 
                             ##### REVISAR A NECESSIDADE DO TRY/EXCEPT
                             # try:
@@ -1236,9 +1254,10 @@ def AILA(texto):
                             if '.' in sugestao_artigo['artigo'][0]:
                                 sugestao_padronizada_artigo = 'Art. {}'.format(sugestao_artigo['artigo'][0])
                             else:
-                                if int(sugestao_artigo['artigo'][0]) < 10:
-                                    sugestao_padronizada_artigo = 'Art. {}°'.format(sugestao_artigo['artigo'][0])
-                                else:
+                                try:
+                                    if int(sugestao_artigo['artigo'][0]) < 10:
+                                        sugestao_padronizada_artigo = 'Art. {}°'.format(sugestao_artigo['artigo'][0])
+                                except:
                                     sugestao_padronizada_artigo = 'Art. {}'.format(sugestao_artigo['artigo'][0])
 
                             if sugestao_artigo['artigo'][1]:
@@ -1248,9 +1267,10 @@ def AILA(texto):
                                 if sugestao_artigo['artigo'][2] == 'unico':
                                     sugestao_padronizada_artigo += ', parágrafo único'
                                 else:
-                                    if int(sugestao_artigo['artigo'][2]) < 10:
-                                        sugestao_padronizada_artigo += ', § {}°'.format(sugestao_artigo['artigo'][2])
-                                    else:
+                                    try:
+                                        if int(sugestao_artigo['artigo'][2]) < 10:
+                                            sugestao_padronizada_artigo += ', § {}°'.format(sugestao_artigo['artigo'][2])
+                                    except:
                                         sugestao_padronizada_artigo += ', § {}'.format(sugestao_artigo['artigo'][2])
 
                             if sugestao_artigo['artigo'][3]:
@@ -1292,7 +1312,8 @@ def AILA(texto):
                                                         'marcador': texto_bruto_artigo,
                                                         'posicao': legislacao[0][2],
                                                         'sugestoes': [sugestao_padronizada_artigo]})
-                        else:
+                        elif len(sugestao_artigo['artigo']) > 0:
+
                             sugestao_padronizada_artigo = ''
                             
                             # ESCREVER CASOS DE CITAÇÃO INDIRETA #
@@ -1313,14 +1334,16 @@ def AILA(texto):
                                 if sugestao_artigo['artigo'][2] == 'unico':
                                     sugestao_padronizada_artigo += 'parágrafo único'
                                 else:
-                                    if int(sugestao_artigo['artigo'][2]) < 10:
-                                        sugestao_padronizada_artigo += '§ {}°'.format(sugestao_artigo['artigo'][2])
-                                    else:
+                                    try:
+                                        if int(sugestao_artigo['artigo'][2]) < 10:
+                                            sugestao_padronizada_artigo += '§ {}°'.format(sugestao_artigo['artigo'][2])
+                                    except:
                                         sugestao_padronizada_artigo += '§ {}'.format(sugestao_artigo['artigo'][2])
-                                        
-                            if int(sugestao_artigo['artigo'][0]) < 10:
-                                sugestao_padronizada_artigo += ' do Art. {}°'.format(sugestao_artigo['artigo'][0])
-                            else:
+
+                            try:               
+                                if int(sugestao_artigo['artigo'][0]) < 10:
+                                    sugestao_padronizada_artigo += ' do Art. {}°'.format(sugestao_artigo['artigo'][0])
+                            except:
                                 sugestao_padronizada_artigo += ' do Art. {}'.format(sugestao_artigo['artigo'][0])
 
                             if sugestao_artigo['artigo'][1]:

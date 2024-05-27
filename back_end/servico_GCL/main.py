@@ -378,7 +378,7 @@ def consulta_texto_lei(arquivo_dic, legislacao):
         if texto_legis == '':
             if arquivo_dic[chave_legis]['ementa'] is None:
                 lista_dict_results.append({f'{chave_legis}': 'None'})
-            lista_dict_results.append({f'{chave_legis}': normalize('NFKD', f'{arquivo_dic[chave_legis]['ementa']}')})
+            lista_dict_results.append({f'{chave_legis}': normalize('NFKD', arquivo_dic[chave_legis]['ementa'])})
             continue
 
         artigo = legislacao[3]
@@ -417,13 +417,19 @@ def consulta_texto_lei(arquivo_dic, legislacao):
             if arquivo_dic[chave_legis]['ementa'] is None:
                 lista_dict_results.append({f'{chave_legis}': 'None'})
             else:
-                lista_dict_results.append({f'{chave_legis}': normalize('NFKD', f'{arquivo_dic[chave_legis]['ementa']}')})
+                lista_dict_results.append({f'{chave_legis}': normalize('NFKD', arquivo_dic[chave_legis]['ementa'])})
 
 
     return lista_dict_results
 
-with open('./legislacoes.json', encoding='utf-8') as file:
-    dic_leis = json.load(file)
+#with open('./legislacoes.json', encoding='utf-8') as file:
+ #   dic_leis = json.load(file)
+
+from pickle import load
+
+fp = open('./dicionario_legislacao.dic', 'rb')
+dic_leis = load(fp)
+fp.close()
 
 #legislacao = (11, "100", date(2019, 6, 26), "1", "0", "0", "iii", "0", "0")
 
