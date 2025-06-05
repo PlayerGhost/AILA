@@ -1,2 +1,2 @@
 # AILA
-Artificial Intelligence Law Assistant
+Artificial Intelligence Law Assistant 
